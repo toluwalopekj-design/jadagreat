@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JADA GREAT — Creative Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & TOKENS ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#060608;--charcoal:#141418;--teal:#1DB8CC;--teal-dim:#0E7A88;
+  --teal-glow:rgba(29,184,204,0.1);--teal-border:rgba(29,184,204,0.2);
+  --white:#FFFFFF;--off-white:#D8E8EC;--muted:rgba(216,232,236,0.45);
+  --bronze:#CD7F32;--silver:#A8B2BA;--gold:#C9A84C;
+  --nav-h:72px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* ── GRID BG ── */
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(29,184,204,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(29,184,204,0.025) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0;}
+
+/* ── ORBS ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(160px);opacity:0.06;}
+.orb-1{width:700px;height:700px;background:var(--teal);top:-250px;right:-200px;}
+.orb-2{width:500px;height:500px;background:var(--teal);bottom:-100px;left:-200px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);
+  background:rgba(6,6,8,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--teal-border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;z-index:100;
+}
+.nav-logo img{height:44px;width:auto;cursor:pointer;}
+.nav-links{display:flex;gap:40px;align-items:center;}
+.nav-links a{
+  font-family:'Orbitron',monospace;font-size:8px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color .2s;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--teal);}
+.nav-cta{
+  background:var(--teal);color:var(--black);
+  font-family:'Orbitron',monospace;font-size:8px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  padding:10px 22px;border:none;cursor:pointer;transition:all .2s;
+  text-decoration:none;
+}
+.nav-cta:hover{background:#25d4ea;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:1.5px;background:var(--teal);transition:all .3s;display:block;}
+
+/* ── PAGES ── */
+.page-view{display:none;min-height:100vh;padding-top:var(--nav-h);position:relative;z-index:1;}
+.page-view.active{display:block;}
+
+/* ── SHARED ── */
+.container{max-width:1100px;margin:0 auto;padding:80px 56px 100px;}
+.section{margin-bottom:80px;}
+.sec-label{display:flex;align-items:center;gap:14px;font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.45em;text-transform:uppercase;color:var(--teal);margin-bottom:32px;}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--teal);}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--teal-border);}
+.headline{font-family:'Orbitron',monospace;font-weight:900;letter-spacing:.06em;line-height:1.1;color:var(--white);}
+.headline span{color:var(--teal);}
+.headline-xl{font-size:clamp(36px,6vw,80px);}
+.headline-lg{font-size:clamp(28px,4.5vw,52px);}
+.headline-md{font-size:clamp(22px,3.5vw,36px);}
+.body-text{font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.9;color:var(--off-white);font-weight:300;}
+.body-text em{color:var(--teal);font-style:italic;}
+.body-muted{font-size:13px;line-height:1.8;color:var(--muted);}
+.mono{font-family:'Space Mono',monospace;color:var(--teal);}
+.card{background:rgba(29,184,204,0.04);border:1px solid var(--teal-border);padding:28px 24px;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+.card-dark{background:rgba(255,255,255,0.02);border:1px solid var(--teal-border);}
+.teal-box{border:1px solid var(--teal-border);border-left:3px solid var(--teal);padding:28px 32px;background:var(--teal-glow);}
+.notice{border:1px solid var(--teal-border);border-left:3px solid var(--teal);padding:18px 24px;background:var(--teal-glow);font-size:12px;line-height:1.8;color:var(--muted);}
+.notice strong{color:var(--off-white);font-weight:500;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.divider{width:48px;height:2px;background:var(--teal);margin:24px 0;}
+.list-item{font-size:13px;color:var(--muted);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:12px;line-height:1.55;}
+.list-item::before{font-family:'Space Mono',monospace;font-size:9px;flex-shrink:0;margin-top:2px;content:'—';color:var(--teal-dim);}
+.btn{background:var(--teal);color:var(--black);font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;padding:16px 40px;border:none;cursor:pointer;transition:all .2s;display:inline-block;text-decoration:none;}
+.btn:hover{background:#25d4ea;transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--teal);border:1px solid var(--teal);font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;padding:15px 40px;cursor:pointer;transition:all .2s;display:inline-block;text-decoration:none;}
+.btn-outline:hover{background:var(--teal-glow);}
+
+/* ══════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════ */
+.hero{
+  min-height:calc(100vh - var(--nav-h));
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-start;
+  padding:80px 56px;max-width:1100px;margin:0 auto;
+}
+.hero-eyebrow{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:var(--teal);margin-bottom:32px;display:flex;align-items:center;gap:14px;}
+.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--teal);}
+.hero-headline{margin-bottom:28px;}
+.hero-sub{max-width:560px;margin-bottom:48px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-scroll{margin-top:80px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.25em;text-transform:uppercase;display:flex;align-items:center;gap:12px;}
+.hero-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--teal),transparent);}
+
+.stats-bar{background:rgba(29,184,204,0.04);border-top:1px solid var(--teal-border);border-bottom:1px solid var(--teal-border);}
+.stats-inner{max-width:1100px;margin:0 auto;padding:40px 56px;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-item{text-align:center;padding:0 20px;border-right:1px solid var(--teal-border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Orbitron',monospace;font-size:32px;font-weight:900;color:var(--teal);line-height:1;margin-bottom:8px;}
+.stat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+
+.services-preview{max-width:1100px;margin:0 auto;padding:80px 56px;}
+.svc-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:8px;}
+.svc-p-card{padding:32px 28px;border-bottom:2px solid transparent;transition:all .3s;cursor:pointer;}
+.svc-p-card:hover{background:rgba(29,184,204,0.06);border-bottom-color:var(--teal);}
+.svc-icon{font-size:28px;margin-bottom:20px;display:block;}
+.svc-name{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+
+.mission-strip{background:var(--charcoal);border-top:1px solid var(--teal-border);border-bottom:1px solid var(--teal-border);padding:80px 56px;}
+.mission-inner{max-width:1100px;margin:0 auto;}
+.mission-quote{font-family:'DM Sans',sans-serif;font-size:clamp(20px,3vw,34px);line-height:1.6;font-weight:300;color:var(--white);max-width:760px;}
+.mission-quote em{color:var(--teal);font-style:italic;}
+
+.work-preview{max-width:1100px;margin:0 auto;padding:80px 56px;}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:8px;}
+.work-card{aspect-ratio:4/3;background:var(--charcoal);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;transition:all .3s;cursor:pointer;border:1px solid var(--teal-border);}
+.work-card:hover{border-color:var(--teal);}
+.work-card:hover .work-overlay{opacity:1;}
+.work-overlay{position:absolute;inset:0;background:rgba(29,184,204,0.08);opacity:0;transition:opacity .3s;}
+.work-glyph{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',monospace;font-size:80px;font-weight:900;color:var(--teal);opacity:0.06;pointer-events:none;}
+.work-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;position:relative;}
+.work-type{font-size:11px;color:var(--teal);position:relative;}
+
+/* ══════════════════════════════════════
+   SERVICES PAGE
+══════════════════════════════════════ */
+.svc-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(29,184,204,0.08);position:relative;transition:background .2s;}
+.svc-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s;}
+.svc-row:hover::before{background:var(--teal);}
+.svc-row:hover{background:var(--teal-glow);}
+.svc-row.svc-cat{padding:9px 20px;border-bottom:none;background:rgba(29,184,204,0.06);margin-top:14px;}
+.svc-row.svc-cat:first-child{margin-top:0;}
+.svc-name{font-size:13px;color:var(--off-white);padding-left:10px;}
+.svc-cat-name{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);}
+.svc-price{font-family:'Space Mono',monospace;font-size:12px;color:var(--teal);text-align:right;white-space:nowrap;}
+.pkg{padding:30px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.pkg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.pkg.bronze::before{background:linear-gradient(90deg,var(--bronze),transparent);}
+.pkg.silver::before{background:linear-gradient(90deg,var(--silver),transparent);}
+.pkg.gold::before{background:linear-gradient(90deg,var(--gold),#E8CC7A,transparent);}
+.pkg.featured{background:rgba(29,184,204,.07);border-color:rgba(29,184,204,.4);}
+.pkg-badge{display:inline-block;background:var(--teal);color:var(--black);font-family:'Orbitron',monospace;font-size:7px;font-weight:700;letter-spacing:.2em;padding:3px 8px;text-transform:uppercase;margin-bottom:10px;}
+.pkg-tier{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;margin-bottom:8px;}
+.pkg.bronze .pkg-tier{color:var(--bronze);}.pkg.silver .pkg-tier{color:var(--silver);}.pkg.gold .pkg-tier{color:var(--gold);}
+.pkg-price{font-family:'Space Mono',monospace;font-size:22px;color:var(--white);margin-bottom:6px;}
+.pkg-price sub{font-size:11px;color:var(--muted);}
+.pkg-turnaround{font-size:10px;color:var(--teal-dim);font-family:'Space Mono',monospace;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--teal-border);}
+.pkg-items{list-style:none;flex:1;margin-bottom:16px;}
+.pkg-tag{font-size:10px;color:var(--teal);font-style:italic;opacity:.85;}
+.retainer{padding:28px 24px;position:relative;overflow:hidden;}
+.retainer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+.ret-tier{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.ret-price{font-family:'Space Mono',monospace;font-size:20px;color:var(--white);margin-bottom:4px;}
+.ret-period{font-size:10px;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--teal-border);}
+.ret-best{font-size:10px;color:var(--teal);font-style:italic;opacity:.85;margin-top:12px;}
+.terms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.term-card{padding:22px 20px;}
+.term-label{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.term-val{font-family:'Space Mono',monospace;font-size:15px;color:var(--white);margin-bottom:6px;}
+.term-note{font-size:11px;color:var(--muted);line-height:1.6;}
+.excl-row{display:flex;flex-wrap:wrap;gap:3px;}
+.excl-tag{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);padding:8px 14px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.excl-tag::before{content:'✕';color:rgba(255,80,80,.5);font-family:'Space Mono',monospace;font-size:9px;}
+.h-card{padding:26px 22px;position:relative;overflow:hidden;}
+.h-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+.h-role{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.h-rate{font-family:'Space Mono',monospace;font-size:22px;color:var(--white);}
+.h-rate span{color:var(--teal);font-size:14px;}
+.h-per{font-size:11px;color:var(--muted);margin-top:6px;}
+
+/* ══════════════════════════════════════
+   ABOUT PAGE
+══════════════════════════════════════ */
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;}
+.sw{aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 12px;}
+.sw-name{font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;}
+.sw-hex{font-family:'Space Mono',monospace;font-size:9px;opacity:.55;margin-top:3px;}
+.sw-role{font-size:9px;opacity:.4;margin-top:2px;}
+.sw1{background:#060608;border:1px solid #1a1a1e;}.sw2{background:#141418;}.sw3{background:#1DB8CC;}.sw4{background:#0E7A88;}.sw5{background:#FFFFFF;}
+.sw3 .sw-name,.sw3 .sw-hex,.sw3 .sw-role,.sw5 .sw-name,.sw5 .sw-hex,.sw5 .sw-role{color:#060608;}
+.type-row{display:grid;grid-template-columns:160px 1fr;gap:40px;align-items:start;padding:36px 0;border-top:1px solid rgba(29,184,204,0.1);}
+.type-meta{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);line-height:2;}
+.type-meta b{color:var(--teal);display:block;font-family:'Orbitron',monospace;font-size:9px;font-weight:700;margin-bottom:4px;}
+.t-display{font-family:'Orbitron',monospace;font-size:clamp(32px,5.5vw,64px);font-weight:900;letter-spacing:.06em;line-height:1;}
+.t-display span{color:var(--teal);}
+.lockups{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.lk{padding:40px;display:flex;justify-content:center;align-items:center;min-height:160px;position:relative;}
+.lk img{height:80px;width:auto;}
+.lk-tag{position:absolute;bottom:12px;left:16px;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;opacity:.35;}
+.lk-dark{background:#060608;border:1px solid #1a1a1e;}.lk-dark .lk-tag{color:#fff;}
+.lk-charcoal{background:#141418;}.lk-charcoal .lk-tag{color:#fff;}
+.lk-teal{background:#1DB8CC;}.lk-teal .lk-tag{color:#060608;}
+.lk-white{background:#FFFFFF;}.lk-white .lk-tag{color:#060608;}
+.v-card{padding:28px 24px;}
+.v-label{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;margin-bottom:16px;}
+.v-card.do .v-label{color:var(--teal);}.v-card.no .v-label{color:rgba(255,80,80,.75);}
+.v-item{font-size:13px;color:var(--muted);padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:12px;line-height:1.55;}
+.v-item b{color:var(--off-white);font-weight:500;}
+.v-item::before{font-family:'Space Mono',monospace;font-size:10px;flex-shrink:0;margin-top:2px;}
+.v-card.do .v-item::before{content:'✓';color:var(--teal);}.v-card.no .v-item::before{content:'✗';color:rgba(255,80,80,.6);}
+
+/* ══════════════════════════════════════
+   WORK PAGE
+══════════════════════════════════════ */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.portfolio-card{position:relative;overflow:hidden;border:1px solid var(--teal-border);cursor:pointer;transition:all .3s;}
+.portfolio-card:hover{border-color:var(--teal);transform:translateY(-4px);}
+.portfolio-card:hover .p-overlay{opacity:1;}
+.p-thumb{aspect-ratio:4/3;background:var(--charcoal);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.p-glyph{font-family:'Orbitron',monospace;font-size:60px;font-weight:900;color:var(--teal);opacity:0.08;}
+.p-overlay{position:absolute;inset:0;background:rgba(29,184,204,0.12);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.p-overlay-text{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);}
+.p-info{padding:20px 18px;}
+.p-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
+.p-type{font-size:11px;color:var(--teal);margin-bottom:8px;}
+.p-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.behance-cta{text-align:center;padding:56px 0 0;}
+
+/* ══════════════════════════════════════
+   CLIENT BRIEF / CONTACT PAGE
+══════════════════════════════════════ */
+.field{margin-bottom:16px;}
+.field label{display:block;font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--teal-border);padding:14px 16px;color:var(--off-white);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s,background .2s;resize:vertical;}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal);background:rgba(29,184,204,.05);}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted);}
+.check-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.check-item{position:relative;}
+.check-item input[type=checkbox],.check-item input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.check-item label{display:flex;align-items:center;gap:8px;background:rgba(29,184,204,.05);border:1px solid var(--teal-border);padding:9px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all .2s;user-select:none;}
+.check-item input:checked + label{background:rgba(29,184,204,.15);border-color:var(--teal);color:var(--off-white);}
+.check-item label::before{content:'☐';color:var(--teal-dim);font-size:14px;transition:all .2s;}
+.check-item input[type=radio] + label::before{content:'○';}
+.check-item input:checked + label::before{content:'☑';color:var(--teal);}
+.check-item input[type=radio]:checked + label::before{content:'●';}
+.scale-group{display:flex;gap:3px;margin-top:6px;}
+.scale-item{position:relative;flex:1;}
+.scale-item input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.scale-item label{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(29,184,204,.04);border:1px solid var(--teal-border);padding:12px 6px;cursor:pointer;transition:all .2s;text-align:center;}
+.scale-item input:checked + label{background:rgba(29,184,204,.18);border-color:var(--teal);}
+.scale-num{font-family:'Space Mono',monospace;font-size:14px;color:var(--teal);line-height:1;}
+.scale-lbl{font-size:9px;color:var(--muted);margin-top:4px;}
+#success-msg{display:none;text-align:center;padding:80px 40px;}
+#success-msg .s-icon{font-size:56px;margin-bottom:20px;}
+#success-msg .s-title{font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:var(--teal);letter-spacing:.08em;margin-bottom:16px;}
+#success-msg .s-sub{font-size:15px;color:var(--muted);line-height:1.9;}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.site-footer{background:var(--charcoal);border-top:1px solid var(--teal-border);padding:56px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;align-items:start;}
+.footer-logo img{height:60px;width:auto;margin-bottom:16px;display:block;}
+.footer-tagline{font-family:'DM Sans',sans-serif;font-style:italic;font-size:13px;color:var(--muted);}
+.footer-col-title{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
+.footer-link{display:block;font-size:12px;color:var(--muted);text-decoration:none;padding:6px 0;transition:color .2s;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);}
+.footer-link:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--teal-border);display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);}
+
+/* ══════════════════════════════════════
+   MOBILE
+══════════════════════════════════════ */
+
+  .nav-links{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(6,6,8,.97);flex-direction:column;padding:32px 24px;gap:24px;border-bottom:1px solid var(--teal-border);}
+  .nav-links.open{display:flex;}
+  .nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .hero{padding:48px 24px;}
+  .container{padding:48px 24px 72px;}
+  .stats-inner{grid-template-columns:1fr 1fr;padding:32px 24px;gap:24px;}
+  .stat-item{border-right:none;}
+  .services-preview,.mission-strip,.work-preview{padding:48px 24px;}
+  .svc-preview-grid,.work-grid,.portfolio-grid,.three-col{grid-template-columns:1fr;}
+  .two-col{grid-template-columns:1fr;}
+  .four-col{grid-template-columns:1fr 1fr;}
+  .palette{grid-template-columns:repeat(3,1fr);}
+  .lockups{grid-template-columns:1fr 1fr;}
+  .terms-grid{grid-template-columns:1fr;}
+  .type-row{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+  .site-footer{padding:40px 24px;}
+}
+
+/* ── LIGHT THEME ── */
+html.light {
+  --black:#FAFAFA;
+  --charcoal:#FFFFFF;
+  --teal:#0E90A0;
+  --teal-dim:#0A6B78;
+  --teal-glow:rgba(14,144,160,0.08);
+  --teal-border:rgba(14,144,160,0.22);
+  --white:#0D0D0F;
+  --off-white:#1A1E26;
+  --muted:rgba(18,24,38,0.5);
+  --nav-h:72px;
+}
+
+/* BASE */
+html.light body{background:#FAFAFA;color:#0D0D0F;}
+html.light body::before{
+  background-image:linear-gradient(rgba(14,144,160,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(14,144,160,0.07) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+html.light .orb-1{background:#0E90A0;opacity:0.06;}
+html.light .orb-2{background:#0E90A0;opacity:0.04;}
+
+/* NAV */
+html.light nav{
+  background:rgba(250,250,250,0.92);
+  border-bottom:1px solid rgba(14,144,160,0.18);
+}
+html.light .nav-links a{color:rgba(18,24,38,0.55);}
+html.light .nav-links a:hover,
+html.light .nav-links a.active{color:var(--teal);}
+html.light .hamburger span{background:#0D0D0F;}
+html.light .nav-cta{background:#0E90A0;color:#FFFFFF;}
+html.light .nav-cta:hover{background:#0A6B78;}
+html.light .mobile-cta{color:#0E90A0;border-color:rgba(14,144,160,0.3);}
+
+/* HERO */
+html.light .hero-eyebrow{color:#0E90A0;}
+html.light .hero-eyebrow::after{background:#0E90A0;}
+html.light .headline{color:#0D0D0F;}
+html.light .headline span{color:#0E90A0;}
+html.light .body-text{color:#1A1E26;}
+html.light .body-text em{color:#0E90A0;}
+html.light .body-muted{color:rgba(18,24,38,0.55);}
+html.light .hero-scroll{color:rgba(18,24,38,0.4);}
+html.light .hero-scroll::before{background:linear-gradient(to bottom,#0E90A0,transparent);}
+html.light .btn{background:#0E90A0;color:#FFFFFF;}
+html.light .btn:hover{background:#0A6B78;}
+html.light .btn-outline{color:#0E90A0;border-color:#0E90A0;}
+html.light .btn-outline:hover{background:rgba(14,144,160,0.08);}
+
+/* STATS BAR */
+html.light .stats-bar{
+  background:#F0F4F5;
+  border-top:1px solid rgba(14,144,160,0.15);
+  border-bottom:1px solid rgba(14,144,160,0.15);
+}
+html.light .stat-item{border-right:1px solid rgba(14,144,160,0.15);}
+html.light .stat-item:last-child{border-right:none;}
+html.light .stat-num{color:#0E90A0;}
+html.light .stat-label{color:rgba(18,24,38,0.5);}
+
+/* SECTION LABELS */
+html.light .sec-label{color:#0E90A0;}
+html.light .sec-label::before{background:#0E90A0;}
+html.light .sec-label::after{background:rgba(14,144,160,0.2);}
+
+/* CARDS */
+html.light .card{
+  background:#FFFFFF;
+  border:1px solid rgba(14,144,160,0.18);
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+html.light .card::before{background:linear-gradient(90deg,#0E90A0,transparent);}
+html.light .card-dark{
+  background:#FFFFFF;
+  border:1px solid rgba(14,144,160,0.15);
+  box-shadow:0 1px 8px rgba(0,0,0,0.05);
+}
+html.light .teal-box{
+  background:rgba(14,144,160,0.06);
+  border-color:rgba(14,144,160,0.25);
+  border-left-color:#0E90A0;
+}
+html.light .notice{
+  background:rgba(14,144,160,0.06);
+  border-color:rgba(14,144,160,0.2);
+  border-left-color:#0E90A0;
+}
+html.light .notice p{color:rgba(18,24,38,0.65);}
+html.light .notice strong{color:#0D0D0F;}
+html.light .divider{background:#0E90A0;}
+
+/* MISSION */
+html.light .mission-strip{
+  background:#EEF4F5;
+  border-top:1px solid rgba(14,144,160,0.15);
+  border-bottom:1px solid rgba(14,144,160,0.15);
+}
+html.light .mission-quote{color:#0D0D0F;}
+html.light .mission-quote em{color:#0E90A0;}
+
+/* SERVICES */
+html.light .svc-p-card:hover{background:rgba(14,144,160,0.06);border-bottom-color:#0E90A0;}
+html.light .svc-icon{color:#0D0D0F;}
+html.light .svc-name{color:#0E90A0;}
+html.light .svc-row{border-bottom:1px solid rgba(14,144,160,0.1);}
+html.light .svc-row::before{background:transparent;}
+html.light .svc-row:hover::before{background:#0E90A0;}
+html.light .svc-row:hover{background:rgba(14,144,160,0.06);}
+html.light .svc-row.svc-cat{background:rgba(14,144,160,0.07);}
+html.light .svc-cat-name{color:#0E90A0;}
+html.light .svc-name{color:#1A1E26;padding-left:10px;}
+html.light .svc-price{color:#0E90A0;}
+
+/* WORK */
+html.light .work-card{
+  background:#EAEEF0;
+  border:1px solid rgba(14,144,160,0.15);
+}
+html.light .work-card:hover{border-color:#0E90A0;}
+html.light .work-title{color:#0D0D0F;}
+html.light .work-type{color:#0E90A0;}
+html.light .portfolio-card{
+  border:1px solid rgba(14,144,160,0.15);
+  background:#FFFFFF;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+html.light .portfolio-card:hover{border-color:#0E90A0;transform:translateY(-4px);box-shadow:0 8px 24px rgba(14,144,160,0.12);}
+html.light .p-thumb{background:#EEF4F5;}
+html.light .p-title{color:#0D0D0F;}
+html.light .p-type{color:#0E90A0;}
+html.light .p-desc{color:rgba(18,24,38,0.6);}
+html.light .p-overlay{background:rgba(14,144,160,0.1);}
+html.light .p-overlay-text{color:#0E90A0;}
+
+/* PACKAGES */
+html.light .pkg{
+  background:#FFFFFF;
+  border:1px solid rgba(14,144,160,0.15);
+  box-shadow:0 1px 8px rgba(0,0,0,0.05);
+}
+html.light .pkg.featured{background:#EEF9FA;border-color:rgba(14,144,160,0.4);}
+html.light .pkg-badge{background:#0E90A0;color:#FFFFFF;}
+html.light .pkg-price{color:#0D0D0F;}
+html.light .pkg-price sub{color:rgba(18,24,38,0.45);}
+html.light .pkg-turnaround{color:#0A6B78;}
+html.light .pkg-tag{color:#0E90A0;}
+html.light .retainer{background:#FFFFFF;border:1px solid rgba(14,144,160,0.15);box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+html.light .ret-tier{color:#0E90A0;}
+html.light .ret-price{color:#0D0D0F;}
+html.light .ret-period{color:rgba(18,24,38,0.5);border-bottom-color:rgba(14,144,160,0.15);}
+html.light .ret-best{color:#0E90A0;}
+html.light .retainer{background:#FFFFFF;border:1px solid rgba(14,144,160,0.18);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+html.light .retainer::before{background:linear-gradient(90deg,#0E90A0,transparent);}
+html.light .ret-tier{color:#0E90A0;}
+html.light .ret-price{color:#0D0D0F;font-family:'Space Mono',monospace;}
+html.light .ret-period{color:rgba(18,24,38,0.5);border-bottom-color:rgba(14,144,160,0.15);}
+html.light .retainer .list-item{color:rgba(18,24,38,0.7);border-bottom-color:rgba(18,24,38,0.06);}
+html.light .retainer .list-item::before{color:#0A6B78;}
+html.light .retainer .pkg-badge{background:#0E90A0;color:#FFFFFF;}
+
+/* TERMS */
+html.light .term-label{color:#0E90A0;}
+html.light .term-val{color:#0D0D0F;}
+html.light .term-note{color:rgba(18,24,38,0.55);}
+html.light .excl-tag{
+  background:#F2F4F6;
+  border:1px solid rgba(18,24,38,0.12);
+  color:rgba(18,24,38,0.6);
+}
+html.light .excl-tag::before{color:rgba(200,50,50,0.6);}
+
+/* LIST ITEMS */
+html.light .list-item{color:rgba(18,24,38,0.65);border-bottom:1px solid rgba(18,24,38,0.06);}
+html.light .list-item::before{color:#0A6B78;}
+
+/* ABOUT - PALETTE */
+html.light .sw1{background:#0D0D0F;border:none;}
+html.light .sw1 .sw-name,.sw1 .sw-hex,.sw1 .sw-role{color:#FAFAFA!important;}
+html.light .sw-name{color:#0D0D0F;}
+html.light .sw-hex{color:#0D0D0F;}
+html.light .sw-role{color:rgba(18,24,38,0.5);}
+
+/* ABOUT - TYPOGRAPHY */
+html.light .type-row{border-top:1px solid rgba(14,144,160,0.12);}
+html.light .type-meta{color:rgba(18,24,38,0.5);}
+html.light .type-meta b{color:#0E90A0;}
+html.light .t-display{color:#0D0D0F;}
+html.light .t-display span{color:#0E90A0;}
+
+/* LOGO LOCKUPS */
+html.light .lk-dark{background:#0D0D0F;border:1px solid #0D0D0F;}
+html.light .lk-charcoal{background:#1C1C20;}
+html.light .lk-teal{background:#0E90A0;}
+html.light .lk-white{background:#FFFFFF;border:1px solid rgba(14,144,160,0.2);}
+
+/* VOICE */
+html.light .v-card{background:#FFFFFF;border:1px solid rgba(14,144,160,0.15);box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+html.light .v-label{font-family:'Orbitron',monospace;}
+html.light .v-card.do .v-label{color:#0E90A0;}
+html.light .v-card.no .v-label{color:rgba(200,50,50,0.8);}
+html.light .v-item{color:rgba(18,24,38,0.65);border-bottom:1px solid rgba(18,24,38,0.06);}
+html.light .v-item b{color:#0D0D0F;}
+html.light .v-card.do .v-item::before{color:#0E90A0;}
+html.light .v-card.no .v-item::before{color:rgba(200,50,50,0.7);}
+
+/* HOURLY */
+html.light .h-card{background:#FFFFFF;border:1px solid rgba(14,144,160,0.15);box-shadow:0 1px 8px rgba(0,0,0,0.04);}
+html.light .h-card::after{background:linear-gradient(90deg,#0E90A0,transparent);}
+html.light .h-role{color:rgba(18,24,38,0.5);}
+html.light .h-rate{color:#0D0D0F;}
+html.light .h-rate span{color:#0E90A0;}
+html.light .h-per{color:rgba(18,24,38,0.45);}
+
+/* CONTACT FORM */
+html.light .field label{color:#0E90A0;}
+html.light .field input,
+html.light .field textarea{
+  background:#FFFFFF;
+  border:1px solid rgba(14,144,160,0.22);
+  color:#0D0D0F;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04);
+}
+html.light .field input:focus,
+html.light .field textarea:focus{
+  border-color:#0E90A0;
+  background:#F5FBFC;
+  box-shadow:0 0 0 3px rgba(14,144,160,0.1);
+}
+html.light .field input::placeholder,
+html.light .field textarea::placeholder{color:rgba(18,24,38,0.3);}
+html.light .check-item label{
+  background:#F5FBFC;
+  border:1px solid rgba(14,144,160,0.2);
+  color:rgba(18,24,38,0.65);
+}
+html.light .check-item input:checked + label{
+  background:rgba(14,144,160,0.1);
+  border-color:#0E90A0;
+  color:#0D0D0F;
+}
+html.light .check-item label::before{color:#0A6B78;}
+html.light .check-item input:checked + label::before{color:#0E90A0;}
+html.light .scale-item label{
+  background:#F5FBFC;
+  border:1px solid rgba(14,144,160,0.2);
+}
+html.light .scale-item input:checked + label{
+  background:rgba(14,144,160,0.12);
+  border-color:#0E90A0;
+}
+html.light .scale-num{color:#0E90A0;}
+html.light .scale-lbl{color:rgba(18,24,38,0.5);}
+
+/* FOOTER */
+html.light .site-footer{
+  background:#EEF4F5;
+  border-top:1px solid rgba(14,144,160,0.15);
+}
+html.light .footer-tagline{color:rgba(18,24,38,0.5);}
+html.light .footer-col-title{color:#0E90A0;}
+html.light .footer-link{color:rgba(18,24,38,0.55);}
+html.light .footer-link:hover{color:#0E90A0;}
+html.light .footer-bottom{border-top:1px solid rgba(14,144,160,0.15);}
+html.light .footer-copy{color:rgba(18,24,38,0.4);}
+
+/* THEME TOGGLE */
+html.light .theme-toggle{
+  border-color:rgba(14,144,160,0.3);
+  color:#0E90A0;
+}
+html.light .theme-toggle:hover{background:rgba(14,144,160,0.08);}
+
+/* NAV MOBILE MENU */
+html.light .nav-links{background:rgba(250,250,250,0.97);}
+
+/* CTA SECTION */
+html.light #page-home > div:last-child{
+  background:#EEF4F5;
+  border-top:1px solid rgba(14,144,160,0.15);
+}
+html.light .cta-strip{
+  background:#EEF4F5!important;
+  border-top:1px solid rgba(14,144,160,0.15)!important;
+}
+
+/* MONO */
+html.light .mono{color:#0E90A0;}
+html.light .t-mono{color:#0E90A0;}
+html.light .t-mono span{color:rgba(18,24,38,0.5);}
+
+/* PERSONALITY CARDS */
+html.light .card .p-num{color:#0A6B78;}
+html.light .card .p-title{color:#0E90A0;}
+html.light .card .p-desc{color:rgba(18,24,38,0.6);}
+
+/* AUDIENCE */
+html.light .aud-name{color:#0E90A0;}
+html.light .aud-icon{filter:none;}
+
+/* SUCCESS MSG */
+html.light .s-title{color:#0E90A0;}
+html.light .s-sub{color:rgba(18,24,38,0.6);}
+
+
+html.light .retainer{background:#FFFFFF;border:1px solid rgba(14,144,160,0.18);box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+html.light .ret-tier{color:#0E90A0;}
+html.light .ret-price{color:#0D0D0F;font-weight:500;}
+html.light .ret-period{color:rgba(18,24,38,0.5);border-bottom-color:rgba(14,144,160,0.15);}
+html.light .ret-items .list-item{color:rgba(18,24,38,0.65);border-bottom-color:rgba(18,24,38,0.06);}
+html.light .ret-best{color:#0E90A0;}
+html.light .retainer{background:#FFFFFF;border:1px solid rgba(14,144,160,0.18);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+html.light .retainer::before{background:linear-gradient(90deg,#0E90A0,transparent);}
+html.light .ret-tier{color:#0E90A0;}
+html.light .ret-price{color:#0D0D0F;font-family:'Space Mono',monospace;}
+html.light .ret-period{color:rgba(18,24,38,0.5);border-bottom-color:rgba(14,144,160,0.15);}
+html.light .retainer .list-item{color:rgba(18,24,38,0.7);border-bottom-color:rgba(18,24,38,0.06);}
+html.light .retainer .list-item::before{color:#0A6B78;}
+html.light .retainer .pkg-badge{background:#0E90A0;color:#FFFFFF;}
+html.light .retainer .pkg-badge{background:#0E90A0;color:#FFFFFF;}
+html.light .retainer[style*="rgba(29,184,204"]{background:rgba(14,144,160,0.06)!important;border-color:rgba(14,144,160,0.35)!important;}
+
+
+html.light .portfolio-card .p-thumb[style*="flex"]{background:#EEF4F5!important;}
+html.light .portfolio-card .p-thumb div{color:#0E90A0!important;}
+
+html.light .ret-card{background:#FFFFFF!important;border:1px solid rgba(14,144,160,0.18)!important;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+html.light .ret-card .list-item{color:rgba(18,24,38,0.65)!important;border-bottom-color:rgba(18,24,38,0.06)!important;}
+html.light .ret-card .list-item::before{color:#0A6B78!important;}
+html.light .ret-card .ret-price{color:#0D0D0F!important;}
+html.light .ret-card .ret-period{color:rgba(18,24,38,0.5)!important;}
+html.light .ret-card .ret-tier{color:#0E90A0!important;}
+html.light .ret-card .ret-best{color:#0E90A0!important;}
+
+.behance-thumb{background:var(--charcoal);}
+html.light .behance-thumb{background:#EEF4F5;}
+
+html.light .sw2{color:#fff!important;}
+html.light .retainers-notice{background:rgba(14,144,160,0.08)!important;border-color:rgba(14,144,160,0.25)!important;}
+html.light .retainers-notice p,
+html.light .retainers-notice{color:rgba(18,24,38,0.85)!important;}
+html.light .retainers-notice strong{color:#0D0D0F!important;}
+html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
+/* ── THEME TOGGLE ── */
+.theme-toggle{
+  background:transparent;border:1px solid var(--teal-border);
+  color:var(--teal);cursor:pointer;padding:7px 10px;
+  font-size:14px;line-height:1;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.theme-toggle:hover{background:var(--teal-glow);}
+
+/* ── IMPROVED RESPONSIVE ── */
+/* Tablet */
+@media(min-width:769px) and (max-width:1024px){
+  nav{padding:0 32px;}
+  .nav-links{gap:24px;}
+  .container{padding:56px 32px 72px;}
+  .hero{padding:56px 32px;}
+  .services-preview,.mission-strip,.work-preview{padding:56px 32px;}
+  .stats-inner{padding:32px;}
+  .site-footer{padding:48px 32px;}
+  .four-col{grid-template-columns:1fr 1fr;}
+  .palette{grid-template-columns:repeat(3,1fr);}
+  .lockups{grid-template-columns:1fr 1fr;}
+  .terms-grid{grid-template-columns:1fr 1fr;}
+  .hero-headline{font-size:clamp(32px,5vw,56px);}
+  .portfolio-grid{grid-template-columns:1fr 1fr;}
+  .work-grid{grid-template-columns:1fr 1fr;}
+  .svc-preview-grid{grid-template-columns:1fr 1fr;}
+}
+
+/* Mobile */
+@media(max-width:768px){
+  nav{padding:0 20px;gap:12px;}
+  .nav-links{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(6,6,8,.97);flex-direction:column;padding:24px 20px;gap:20px;border-bottom:1px solid var(--teal-border);z-index:99;}
+  html.light .nav-links{background:rgba(240,242,245,.97);}
+  .nav-links.open{display:flex;}
+  .nav-links .nav-cta{display:none;}
+  .mobile-cta{display:block;background:transparent;color:var(--teal);border:1px solid var(--teal-border);font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;padding:12px 20px;text-align:left;cursor:pointer;width:100%;transition:color .2s;}
+.mobile-cta:hover{color:var(--teal);}
+  .hamburger{display:flex;}
+  .nav-logo img{height:38px;}
+  .hero{padding:40px 20px 56px;}
+  .hero-headline{font-size:clamp(28px,9vw,48px);}
+  .container{padding:40px 20px 64px;}
+  .stats-inner{grid-template-columns:1fr 1fr;padding:24px 20px;gap:16px;}
+  .stat-item{border-right:none;padding:0;}
+  .services-preview,.mission-strip,.work-preview{padding:40px 20px;}
+  .svc-preview-grid,.work-grid,.portfolio-grid,.three-col{grid-template-columns:1fr;}
+  .two-col{grid-template-columns:1fr;}
+  .four-col{grid-template-columns:1fr 1fr;}
+  .palette{grid-template-columns:repeat(3,1fr);}
+  .lockups{grid-template-columns:1fr 1fr;}
+  .terms-grid{grid-template-columns:1fr;}
+  .type-row{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center;}
+  .site-footer{padding:40px 20px;}
+  .hero-btns{flex-direction:column;gap:10px;width:100%;}
+  .btn,.btn-outline{width:100%;text-align:center;}
+  .scale-group{flex-wrap:wrap;}
+  .scale-item{flex:1;min-width:60px;}
+  .check-group{gap:6px;}
+  .stats-bar{overflow:hidden;}
+  .mission-strip{padding:48px 20px;}
+  .pkg-grid,.pkg-3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <img src="data:image/png;base64,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" alt="JADA GREAT">
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a onclick="showPage('home');closeMenu()" data-page="home">Home</a>
+    <a onclick="showPage('services');closeMenu()" data-page="services">Services</a>
+    <a onclick="showPage('about');closeMenu()" data-page="about">About</a>
+    <a onclick="showPage('work');closeMenu()" data-page="work">Work</a>
+    <button class="mobile-cta" onclick="showPage('contact');closeMenu()">Start a Project</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a onclick="showPage('contact')" class="nav-cta" id="desktop-cta">Start a Project</a>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme" onclick="toggleTheme()">🌙</button>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HOME
+══════════════════════════════════════ -->
+<div id="page-home" class="page-view active">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Creative Agency · Nigeria</div>
+    <div class="hero-headline headline headline-xl">
+      We Build<br>Brands That<br><span>Mean Business.</span>
+    </div>
+    <div class="hero-sub body-text">
+      JADA GREAT is a creative agency built for brands that <em>refuse to be ordinary</em>. Strategy, design, and storytelling — crafted for the bold and the visionary.
+    </div>
+    <div class="hero-btns">
+      <button class="btn" onclick="showPage('contact')">Start a Project</button>
+      <button class="btn-outline" onclick="showPage('work')">View Work</button>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Design Disciplines</div></div>
+      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Service Tiers</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Brand-Focused</div></div>
+      <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Ambition</div></div>
+    </div>
+  </div>
+
+  <div class="services-preview">
+    <div class="sec-label">What We Do</div>
+    <div class="svc-preview-grid">
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">✦</span>
+        <div class="svc-name">Branding</div>
+        <div class="body-muted">Logo design, full brand identity systems, style guides, and brand strategy.</div>
+      </div>
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">◈</span>
+        <div class="svc-name">Print & Digital</div>
+        <div class="body-muted">Business cards, flyers, brochures, social media kits, and website graphics.</div>
+      </div>
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">⬡</span>
+        <div class="svc-name">Illustration</div>
+        <div class="body-muted">Custom 2D illustrations, brand characters, and packaging design.</div>
+      </div>
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">◎</span>
+        <div class="svc-name">Consultancy</div>
+        <div class="body-muted">Brand audits, design direction, creative consulting, and visual strategy.</div>
+      </div>
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">⟡</span>
+        <div class="svc-name">Campaigns</div>
+        <div class="body-muted">Social media campaigns, launch assets, event branding, and ad creatives.</div>
+      </div>
+      <div class="card-dark card svc-p-card" onclick="showPage('services')">
+        <span class="svc-icon">⬭</span>
+        <div class="svc-name">Retainers</div>
+        <div class="body-muted">Monthly packages for brands that need consistent, ongoing creative support.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mission-strip">
+    <div class="mission-inner">
+      <div class="sec-label">Our Mission</div>
+      <div class="mission-quote">"To partner with the bold and the visionary — and build brands that <em>command attention, build trust, and stand the test of time.</em>"</div>
+      <div class="divider"></div>
+      <div class="body-muted" style="max-width:560px;">We don't just design. We architect identities that carry the full weight of your vision — from the first impression to the lasting legacy.</div>
+    </div>
+  </div>
+
+  <div class="work-preview">
+    <div class="sec-label">Selected Work</div>
+    <div class="work-grid">
+      <div class="work-card" onclick="window.open('https://www.behance.net/gallery/211443837/BINCOM-BANK-Visual-Identity','_blank')">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/274641211443837.6722ec3fd8ab0.jpg" alt="BINCOM BANK" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div class="work-overlay"></div>
+        <div class="work-title">BINCOM BANK</div><div class="work-type">Visual Identity & Brand Design</div>
+      </div>
+      <div class="work-card" onclick="window.open('https://www.behance.net/gallery/220438709/Branding-and-Marketing-Strategy-for-Raebel','_blank')">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/165407220438709.67c2e67a1afe4.jpg" alt="RAEBEL" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div class="work-overlay"></div>
+        <div class="work-title">RAEBEL</div><div class="work-type">Branding & Marketing Strategy</div>
+      </div>
+      <div class="work-card" onclick="window.open('https://www.behance.net/gallery/204097177/NOVO-AMOR-NORTH-AMERICA-TOUR-POSTER','_blank')">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/5ea5b4204097177.66a29a7c10a36.jpg" alt="NOVO AMOR" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div class="work-overlay"></div>
+        <div class="work-title">NOVO AMOR</div><div class="work-type">Poster Design</div>
+      </div></div>
+    <div style="margin-top:32px;text-align:center;">
+      <button class="btn-outline" onclick="showPage('work')">View All Work</button>
+    </div>
+  </div>
+
+  <div class="cta-strip" style="background:var(--charcoal);border-top:1px solid var(--teal-border);">
+    <div style="max-width:1100px;margin:0 auto;padding:80px 56px;text-align:center;">
+      <div class="headline headline-lg" style="margin-bottom:16px;">Ready to Build Something <span>Great?</span></div>
+      <div class="body-muted" style="margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;">Let's create something your audience won't forget. Start with a brief — we'll take it from there.</div>
+      <button class="btn" onclick="showPage('contact')">Start a Project</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     SERVICES
+══════════════════════════════════════ -->
+<div id="page-services" class="page-view">
+<div class="container">
+
+  <div class="teal-box" style="margin-bottom:64px;">
+    <div class="body-text">JADA GREAT operates at the <em>premium end</em> of Nigeria's creative market. Our pricing reflects the quality, strategy, and craft behind every deliverable. We don't compete on price — we compete on results. <strong style="color:var(--off-white);">Minimum project: ₦80,000.</strong></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">01 — Design Services</div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">01 · Logo Design</div></div>
+    <div class="svc-row"><div class="svc-name">Custom Logo Design (1 concept, 2 revisions)</div><div class="svc-price">₦80,000 – ₦200,000</div></div>
+    <div class="svc-row"><div class="svc-name">Custom Logo Design (3 concepts, unlimited revisions)</div><div class="svc-price">₦250,000 – ₦450,000</div></div>
+    <div class="svc-row"><div class="svc-name">Logo Revision / Refinement</div><div class="svc-price">₦25,000 – ₦60,000</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">02 · Brand Identity</div></div>
+    <div class="svc-row"><div class="svc-name">Full Brand Identity (Logo, Palette, Typography, Guidelines)</div><div class="svc-price">₦350,000 – ₦700,000</div></div>
+    <div class="svc-row"><div class="svc-name">Brand Style Guide / Standards Document</div><div class="svc-price">₦120,000 – ₦250,000</div></div>
+    <div class="svc-row"><div class="svc-name">Brand Audit & Strategy Session</div><div class="svc-price">₦80,000 – ₦150,000</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">03 · Print & Stationery</div></div>
+    <div class="svc-row"><div class="svc-name">Business Card Design</div><div class="svc-price">₦25,000 – ₦60,000</div></div>
+    <div class="svc-row"><div class="svc-name">Letterhead & Envelope Design</div><div class="svc-price">₦30,000 – ₦70,000</div></div>
+    <div class="svc-row"><div class="svc-name">Flyer Design (per page)</div><div class="svc-price">₦20,000 – ₦50,000</div></div>
+    <div class="svc-row"><div class="svc-name">Brochure Design (up to 8 pages)</div><div class="svc-price">₦80,000 – ₦200,000</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">04 · Digital & Social</div></div>
+    <div class="svc-row"><div class="svc-name">Social Media Graphic (per post)</div><div class="svc-price">₦15,000 – ₦40,000</div></div>
+    <div class="svc-row"><div class="svc-name">Social Media Kit (Profile, Cover, 5 Templates)</div><div class="svc-price">₦80,000 – ₦180,000</div></div>
+    <div class="svc-row"><div class="svc-name">Website Graphics / UI Assets</div><div class="svc-price">₦60,000 – ₦200,000</div></div>
+    <div class="svc-row"><div class="svc-name">Email Newsletter Template</div><div class="svc-price">₦40,000 – ₦100,000</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">05 · Illustration</div></div>
+    <div class="svc-row"><div class="svc-name">Custom 2D Illustration (per piece)</div><div class="svc-price">₦50,000 – ₦150,000</div></div>
+    <div class="svc-row"><div class="svc-name">Packaging Design (label/box, 1 concept)</div><div class="svc-price">₦120,000 – ₦300,000</div></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">02 — Hourly Rates</div>
+    <div class="two-col">
+      <div class="card-dark card h-card"><div class="h-role">Junior / Mid Designer</div><div class="h-rate">₦8,000 <span>– ₦15,000</span></div><div class="h-per">per hour · contract basis</div></div>
+      <div class="card-dark card h-card"><div class="h-role">Senior / Lead Designer</div><div class="h-rate">₦20,000 <span>– ₦40,000</span></div><div class="h-per">per hour · contract basis</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">03 — Project Packages</div>
+    <div class="three-col">
+      <div class="card-dark card pkg bronze">
+        <div class="pkg-tier">Bronze</div>
+        <div class="pkg-price">₦150,000<sub> flat</sub></div>
+        <div class="pkg-turnaround">⟶ 5–7 business days</div>
+        <ul class="pkg-items"><li class="list-item">Logo Design (1 concept, 2 revisions)</li><li class="list-item">Social Media Kit (Profile, Cover, 2 templates)</li><li class="list-item">2-Page Flyer Design</li><li class="list-item">All source files included</li></ul>
+        <div class="pkg-tag">Ideal for startups &amp; small businesses</div>
+      </div>
+      <div class="card-dark card pkg silver featured">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-tier">Silver</div>
+        <div class="pkg-price">₦450,000<sub> flat</sub></div>
+        <div class="pkg-turnaround">⟶ 10–14 business days</div>
+        <ul class="pkg-items"><li class="list-item">Full Visual Identity System</li><li class="list-item">Logo (2 concepts, 3 revisions)</li><li class="list-item">2D Illustrations (3 custom)</li><li class="list-item">Packaging Design (1 concept)</li><li class="list-item">Design Consultancy (1-hr)</li><li class="list-item">Brand Style Guide</li></ul>
+        <div class="pkg-tag">Comprehensive brand development</div>
+      </div>
+      <div class="card-dark card pkg gold">
+        <div class="pkg-tier">Gold</div>
+        <div class="pkg-price">₦950,000<sub> flat</sub></div>
+        <div class="pkg-turnaround">⟶ 21–30 business days</div>
+        <ul class="pkg-items"><li class="list-item">Full Visual Identity System</li><li class="list-item">3 Logo Concepts, unlimited revisions</li><li class="list-item">Social Media Kit (10 templates)</li><li class="list-item">2D Illustrations (5 custom)</li><li class="list-item">Packaging Design (2 concepts)</li><li class="list-item">Design Consultancy (3-hr)</li><li class="list-item">Full Brand Standards Document</li><li class="list-item">Priority support throughout</li></ul>
+        <div class="pkg-tag">Complete overhaul + priority support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">04 — Monthly Retainers</div>
+    <div class="notice retainers-notice" style="margin-bottom:24px;"><strong>Retainers</strong> give you a dedicated designer on call every month at a predictable cost. Minimum commitment: 3 months.</div>
+    <div class="three-col">
+      <div class="card-dark card retainer ret-card">
+        <div class="ret-tier">Starter</div>
+        <div class="ret-price">₦180,000</div>
+        <div class="ret-period">per month · 3-month minimum</div>
+        <ul style="list-style:none;"><li class="list-item">8 social media graphics/month</li><li class="list-item">1 flyer or print asset</li><li class="list-item">1 revision round per asset</li><li class="list-item">5-day turnaround per asset</li><li class="list-item">WhatsApp support</li></ul>
+        <div class="ret-best">Best for: Active social media brands</div>
+      </div>
+      <div class="card-dark card retainer ret-card" style="background:rgba(29,184,204,.05);border-color:rgba(29,184,204,.35);">
+        <div class="pkg-badge" style="margin-bottom:10px;">Best Value</div>
+        <div class="ret-tier">Growth</div>
+        <div class="ret-price">₦380,000</div>
+        <div class="ret-period">per month · 3-month minimum</div>
+        <ul style="list-style:none;"><li class="list-item">16 social media graphics/month</li><li class="list-item">2 flyers or print assets</li><li class="list-item">1 brand asset/month</li><li class="list-item">2 revision rounds per asset</li><li class="list-item">3-day turnaround</li><li class="list-item">Monthly 30-min strategy call</li></ul>
+        <div class="ret-best">Best for: Growing brands &amp; startups</div>
+      </div>
+      <div class="card-dark card retainer ret-card">
+        <div class="ret-tier">Partner</div>
+        <div class="ret-price">₦750,000</div>
+        <div class="ret-period">per month · 3-month minimum</div>
+        <ul style="list-style:none;"><li class="list-item">Unlimited design requests</li><li class="list-item">Unlimited revisions</li><li class="list-item">48-hr turnaround</li><li class="list-item">Monthly 1-hr strategy session</li><li class="list-item">Dedicated point of contact</li><li class="list-item">Quarterly brand review</li></ul>
+        <div class="ret-best">Best for: Enterprises &amp; scaling companies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">05 — Payment Terms</div>
+    <div class="terms-grid">
+      <div class="card-dark card term-card"><div class="term-label">Deposit</div><div class="term-val">50% Upfront</div><div class="term-note">Required before work begins. Non-refundable once design work has started.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Balance</div><div class="term-val">50% on Delivery</div><div class="term-note">Final files released only after full payment is confirmed.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Retainer Billing</div><div class="term-val">100% Monthly</div><div class="term-note">Full monthly fee due on the 1st of each month.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Rush Fee</div><div class="term-val">+25% – +75%</div><div class="term-note">Applied for requests requiring delivery under 48 hours.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Extra Revisions</div><div class="term-val">₦15,000 – ₦30,000</div><div class="term-note">Per round, beyond the agreed revision count.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Minimum Project Fee</div><div class="term-val">₦80,000</div><div class="term-note">JADA GREAT does not accept projects below this threshold.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">06 — Not Included</div>
+    <div class="excl-row">
+      <div class="excl-tag">Stock photography / imagery licences</div>
+      <div class="excl-tag">Printing or production costs</div>
+      <div class="excl-tag">Font licence fees (if premium)</div>
+      <div class="excl-tag">Third-party platform fees</div>
+      <div class="excl-tag">Domain or hosting costs</div>
+      <div class="excl-tag">Content writing or copyediting</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding-top:16px;">
+    <button class="btn" onclick="showPage('contact')">Start a Project</button>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<div id="page-about" class="page-view">
+<div class="container">
+
+  <div class="section">
+    <div class="headline headline-lg" style="margin-bottom:32px;">The Creative Force<br>Behind <span>Iconic Brands.</span></div>
+    <div class="two-col" style="gap:40px;align-items:start;">
+      <div class="body-text" style="line-height:2;">JADA GREAT is a creative agency built for brands that refuse to be ordinary. We work with startups, luxury labels, culture leaders, and enterprises — bringing together <em>strategy, design, and storytelling</em> to create work that lasts.<br><br>Every brief is treated as an opportunity to build something that will outlast the moment it was made in.</div>
+      <div class="teal-box"><div class="body-text" style="font-size:16px;line-height:1.8;">Great isn't the goal.<br><em>It's the standard.</em></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">01 — Colour Palette</div>
+    <div class="palette">
+      <div class="sw sw1"><div class="sw-name">Obsidian</div><div class="sw-hex">#060608</div><div class="sw-role">Primary BG</div></div>
+      <div class="sw sw2" style="color:#fff;"><div class="sw-name">Charcoal</div><div class="sw-hex">#141418</div><div class="sw-role">Cards · UI</div></div>
+      <div class="sw sw3"><div class="sw-name">Teal</div><div class="sw-hex">#1DB8CC</div><div class="sw-role">Signature</div></div>
+      <div class="sw sw4" style="color:#fff;"><div class="sw-name">Teal Deep</div><div class="sw-hex">#0E7A88</div><div class="sw-role">Accent</div></div>
+      <div class="sw sw5"><div class="sw-name">White</div><div class="sw-hex">#FFFFFF</div><div class="sw-role">Type · Logo</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">02 — Typography</div>
+    <div class="type-row"><div class="type-meta"><b>Orbitron</b>Display · Logo<br>Headlines · UI</div><div class="t-display">JADA<span>GREAT</span></div></div>
+    <div class="type-row"><div class="type-meta"><b>DM Sans Light</b>Body · Captions<br>Copy · Subheads</div><div class="body-text" style="font-size:16px;max-width:520px;">We build brands that refuse to be ordinary. <em>Strategy, design, and storytelling</em> — crafted for those who mean business.</div></div>
+    <div class="type-row"><div class="type-meta"><b>Space Mono</b>Pricing · Data<br>Tags · Labels</div><div style="font-family:'Space Mono',monospace;font-size:13px;color:var(--teal);line-height:1.9;">₦200,000 – ₦500,000<br><span style="color:var(--muted);">BRAND · IDENTITY · PACKAGE</span></div></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">03 — Brand Personality</div>
+    <div class="four-col">
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">01</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Bold</div><div class="body-muted">Confident moves, no hedging. Every decision is intentional.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">02</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Precise</div><div class="body-muted">Obsessive craft. The details are where greatness lives.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">03</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Visionary</div><div class="body-muted">We see what's next before it arrives — and build for it.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">04</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Timeless</div><div class="body-muted">Trends fade. We build brands that outlast the moment.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">04 — Brand Voice</div>
+    <div class="two-col">
+      <div class="card-dark card v-card do"><div class="v-label">We Sound Like</div><div class="v-item"><b>Direct and confident.</b> Say it clearly. Own it.</div><div class="v-item"><b>Inspiring, not preachy.</b> We motivate, not lecture.</div><div class="v-item"><b>Premium but warm.</b> Elevated, never cold.</div><div class="v-item"><b>Culture-forward.</b> We always understand the room.</div><div class="v-item"><b>Concise.</b> Every word earns its place.</div></div>
+      <div class="card-dark card v-card no"><div class="v-label">We Never Sound Like</div><div class="v-item">Vague or buzzword-heavy</div><div class="v-item">Desperate or overly salesy</div><div class="v-item">Cold, stiff, or overly corporate</div><div class="v-item">Trend-chasing or inconsistent</div><div class="v-item">Generic — we never blend in</div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     WORK
+══════════════════════════════════════ -->
+<div id="page-work" class="page-view">
+<div class="container">
+
+  <div class="section">
+    <div class="headline headline-lg" style="margin-bottom:16px;">Selected <span>Work</span></div>
+    <div class="body-text" style="margin-bottom:48px;max-width:560px;">A growing portfolio of brand identities, visual systems, and creative work built for bold clients. Full case studies on Behance.</div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/gallery/211443837/BINCOM-BANK-Visual-Identity','_blank')">
+        <div class="p-thumb">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/274641211443837.6722ec3fd8ab0.jpg" alt="BINCOM BANK" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="p-overlay"><div class="p-overlay-text">View on Behance →</div></div>
+        </div>
+        <div class="p-info"><div class="p-title">BINCOM BANK</div><div class="p-type">Visual Identity & Brand Design</div><div class="p-desc">Full visual identity system for a financial institution — building authority and trust through strategic design.</div></div>
+      </div>
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/gallery/220438709/Branding-and-Marketing-Strategy-for-Raebel','_blank')">
+        <div class="p-thumb">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/165407220438709.67c2e67a1afe4.jpg" alt="RAEBEL" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="p-overlay"><div class="p-overlay-text">View on Behance →</div></div>
+        </div>
+        <div class="p-info"><div class="p-title">RAEBEL</div><div class="p-type">Branding & Marketing Strategy</div><div class="p-desc">Artist launch campaign — when design meets strategy, brands become movements. Full identity and campaign system.</div></div>
+      </div>
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/gallery/204097177/NOVO-AMOR-NORTH-AMERICA-TOUR-POSTER','_blank')">
+        <div class="p-thumb">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/5ea5b4204097177.66a29a7c10a36.jpg" alt="NOVO AMOR" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="p-overlay"><div class="p-overlay-text">View on Behance →</div></div>
+        </div>
+        <div class="p-info"><div class="p-title">NOVO AMOR</div><div class="p-type">Poster Design</div><div class="p-desc">North America Tour poster design — cinematic, bold, and crafted to capture the mood of the music.</div></div>
+      </div>
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/gallery/204715695/Social-Media-and-E-mail-Content-Ads','_blank')">
+        <div class="p-thumb">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/max_808/8c1029204715695.Y3JvcCwyNDAxLDE4NzgsMCwzMTQ.jpg" alt="CONTENT ADS" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="p-overlay"><div class="p-overlay-text">View on Behance →</div></div>
+        </div>
+        <div class="p-info"><div class="p-title">CONTENT ADS</div><div class="p-type">Social Media & Email Design</div><div class="p-desc">Social media and email content ads — every pixel with purpose, designed to convert and capture attention.</div></div>
+      </div>
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/gallery/200483461/SOFTxp-Logo-Concept','_blank')">
+        <div class="p-thumb">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/cff34c200483461.6662f173818d2.jpg" alt="SOFTxp" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="p-overlay"><div class="p-overlay-text">View on Behance →</div></div>
+        </div>
+        <div class="p-info"><div class="p-title">SOFTxp</div><div class="p-type">Logo Design & Branding</div><div class="p-desc">Clean, bold, and built to scale. A logo concept for a tech/gadget brand — one mark that says everything.</div></div>
+      </div>
+      <div class="portfolio-card" onclick="window.open('https://www.behance.net/koyejojoshua','_blank')">
+        <div class="p-thumb behance-thumb" style="display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;">
+            <div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;">View All</div>
+            <div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.2em;text-transform:uppercase;">On Behance</div>
+            <div style="width:32px;height:2px;background:var(--teal);margin:14px auto 0;"></div>
+          </div>
+        </div>
+        <div class="p-info"><div class="p-title">+ More Projects</div><div class="p-type">behance.net/koyejojoshua</div><div class="p-desc">Full portfolio available on Behance — 894 views, 179 appreciations, and counting.</div></div>
+      </div></div>
+
+    <div class="behance-cta">
+      <a href="https://www.behance.net/koyejojoshua" target="_blank" class="btn">View Full Portfolio on Behance</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CONTACT / CLIENT BRIEF
+══════════════════════════════════════ -->
+<div id="page-contact" class="page-view">
+<div class="container">
+
+  <div class="headline headline-lg" style="margin-bottom:16px;">Start a <span>Project</span></div>
+  <div class="body-text" style="margin-bottom:48px;max-width:560px;">Fill out the brief below — the more detail you share, the better we can build something that truly represents you. We'll review and send a proposal within <em>48 hours.</em></div>
+
+  <div id="brief-intro" class="teal-box" style="margin-bottom:48px;">
+    <p class="body-muted"><strong style="color:var(--off-white);">All information is kept strictly confidential.</strong> A 50% deposit is required to begin work. By submitting, you agree to our standard project terms.</p>
+  </div>
+
+  <form id="brief-form" name="client-brief" action="https://formspree.io/f/xgoqprrl" method="POST">
+    <input type="hidden" name="_subject" value="New Client Brief — JADA GREAT">
+    <input type="hidden" name="_subject" value="New Client Brief — JADA GREAT">
+
+    <div class="section">
+      <div class="sec-label">01 — About You</div>
+      <div class="two-col">
+        <div class="field"><label>Full Name *</label><input type="text" name="full_name" placeholder="Your full name" required></div>
+        <div class="field"><label>Brand / Business Name *</label><input type="text" name="brand_name" placeholder="Your brand name" required></div>
+        <div class="field"><label>Email Address *</label><input type="email" name="email" placeholder="your@email.com" required></div>
+        <div class="field"><label>Phone / WhatsApp *</label><input type="tel" name="phone" placeholder="+234 000 000 0000" required></div>
+        <div class="field"><label>Website <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="website" placeholder="https://yourwebsite.com"></div>
+        <div class="field"><label>Social Handle(s) <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="social" placeholder="@yourhandle"></div>
+      </div>
+      <div class="field"><label>What does your business do? *</label><textarea name="biz_desc" rows="3" placeholder="Describe your business in your own words..." required></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">02 — Project Details</div>
+      <div class="field">
+        <label>Services Requested *</label>
+        <div class="check-group">
+          <div class="check-item"><input type="checkbox" id="s1" name="services" value="Logo Design"><label for="s1">Logo Design</label></div>
+          <div class="check-item"><input type="checkbox" id="s2" name="services" value="Brand Identity"><label for="s2">Brand Identity</label></div>
+          <div class="check-item"><input type="checkbox" id="s3" name="services" value="Social Media Kit"><label for="s3">Social Media Kit</label></div>
+          <div class="check-item"><input type="checkbox" id="s4" name="services" value="Flyer / Print"><label for="s4">Flyer / Print</label></div>
+          <div class="check-item"><input type="checkbox" id="s5" name="services" value="Illustration"><label for="s5">Illustration</label></div>
+          <div class="check-item"><input type="checkbox" id="s6" name="services" value="Packaging"><label for="s6">Packaging</label></div>
+          <div class="check-item"><input type="checkbox" id="s7" name="services" value="Brand Consultancy"><label for="s7">Consultancy</label></div>
+          <div class="check-item"><input type="checkbox" id="s8" name="services" value="Full Rebrand"><label for="s8">Full Rebrand</label></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field"><label>Preferred Start Date</label><input type="date" name="start_date"></div>
+        <div class="field"><label>Desired Deadline</label><input type="date" name="deadline"></div>
+      </div>
+      <div class="field"><label>Project Goal *</label><textarea name="goal" rows="3" placeholder="What should this project achieve?" required></textarea></div>
+      <div class="field"><label>Existing Brand? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="existing" rows="2" placeholder="What do you want to keep, change, or improve?"></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">03 — Audience & Market</div>
+      <div class="field"><label>Target Audience *</label><textarea name="audience" rows="2" placeholder="Age, gender, location, income level, lifestyle..." required></textarea></div>
+      <div class="two-col">
+        <div class="field"><label>Industry / Niche *</label><input type="text" name="industry" placeholder="e.g. Fashion, Fintech, Food & Beverage" required></div>
+        <div class="field"><label>Key Competitors <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="competitors" placeholder="Brand A, Brand B, Brand C"></div>
+      </div>
+      <div class="field"><label>What makes you different? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="differentiator" rows="2" placeholder="Your unique advantage..."></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">03 — Brand Personality</div>
+      <div class="field">
+        <label>How should your brand feel?</label>
+        <div class="check-group">
+          <div class="check-item"><input type="checkbox" id="f1" name="feel" value="Bold & Powerful"><label for="f1">Bold &amp; Powerful</label></div>
+          <div class="check-item"><input type="checkbox" id="f2" name="feel" value="Minimal & Clean"><label for="f2">Minimal &amp; Clean</label></div>
+          <div class="check-item"><input type="checkbox" id="f3" name="feel" value="Playful & Fun"><label for="f3">Playful &amp; Fun</label></div>
+          <div class="check-item"><input type="checkbox" id="f4" name="feel" value="Luxurious & Premium"><label for="f4">Luxurious &amp; Premium</label></div>
+          <div class="check-item"><input type="checkbox" id="f5" name="feel" value="Professional & Corporate"><label for="f5">Professional &amp; Corporate</label></div>
+          <div class="check-item"><input type="checkbox" id="f6" name="feel" value="Edgy & Modern"><label for="f6">Edgy &amp; Modern</label></div>
+          <div class="check-item"><input type="checkbox" id="f7" name="feel" value="Classic & Timeless"><label for="f7">Classic &amp; Timeless</label></div>
+          <div class="check-item"><input type="checkbox" id="f8" name="feel" value="Tech-Forward"><label for="f8">Tech-Forward</label></div>
+        </div>
+      </div>
+      <div class="field"><label>Colours to avoid? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="avoid_colours" placeholder="e.g. Red — associated with a competitor"></div>
+      <div class="field"><label>Brands you admire visually (and why) <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="admired" rows="2" placeholder="e.g. Apple — clean and minimal. Nike — bold and powerful."></textarea></div>
+      <div class="field"><label>Reference images / links <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="references" rows="2" placeholder="Share any links, Pinterest boards, or mood board ideas..."></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">05 — Budget & Expectations</div>
+      <div class="field">
+        <label>Estimated Budget *</label>
+        <div class="check-group">
+          <div class="check-item"><input type="radio" id="b1" name="budget" value="Under ₦100,000" required><label for="b1">Under ₦100k</label></div>
+          <div class="check-item"><input type="radio" id="b2" name="budget" value="₦100k–₦300k"><label for="b2">₦100k–₦300k</label></div>
+          <div class="check-item"><input type="radio" id="b3" name="budget" value="₦300k–₦600k"><label for="b3">₦300k–₦600k</label></div>
+          <div class="check-item"><input type="radio" id="b4" name="budget" value="₦600k–₦1M"><label for="b4">₦600k–₦1M</label></div>
+          <div class="check-item"><input type="radio" id="b5" name="budget" value="Above ₦1M"><label for="b5">Above ₦1M</label></div>
+          <div class="check-item"><input type="radio" id="b6" name="budget" value="Open to discussion"><label for="b6">Open to discussion</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Urgency Level</label>
+        <div class="scale-group">
+          <div class="scale-item"><input type="radio" id="u1" name="urgency" value="1"><label for="u1"><span class="scale-num">1</span><span class="scale-lbl">No Rush</span></label></div>
+          <div class="scale-item"><input type="radio" id="u2" name="urgency" value="2"><label for="u2"><span class="scale-num">2</span><span class="scale-lbl">Flexible</span></label></div>
+          <div class="scale-item"><input type="radio" id="u3" name="urgency" value="3"><label for="u3"><span class="scale-num">3</span><span class="scale-lbl">Moderate</span></label></div>
+          <div class="scale-item"><input type="radio" id="u4" name="urgency" value="4"><label for="u4"><span class="scale-num">4</span><span class="scale-lbl">Urgent</span></label></div>
+          <div class="scale-item"><input type="radio" id="u5" name="urgency" value="5"><label for="u5"><span class="scale-num">5</span><span class="scale-lbl">ASAP</span></label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Preferred Communication</label>
+        <div class="check-group">
+          <div class="check-item"><input type="checkbox" id="cm1" name="comms" value="WhatsApp"><label for="cm1">WhatsApp</label></div>
+          <div class="check-item"><input type="checkbox" id="cm2" name="comms" value="Email"><label for="cm2">Email</label></div>
+          <div class="check-item"><input type="checkbox" id="cm3" name="comms" value="Phone Calls"><label for="cm3">Phone Calls</label></div>
+          <div class="check-item"><input type="checkbox" id="cm4" name="comms" value="Video Calls"><label for="cm4">Video Calls</label></div>
+        </div>
+      </div>
+      <div class="field"><label>Anything else we should know? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="extra" rows="3" placeholder="Any other details, concerns, or context..."></textarea></div>
+    </div>
+
+    <div style="text-align:center;padding:16px 0 48px;">
+      <button type="submit" class="btn" id="submit-btn">Submit Brief</button>
+    </div>
+  </form>
+
+  <div id="success-msg">
+    <div class="s-icon">✦</div>
+    <div class="s-title">Brief Received!</div>
+    <div class="s-sub">Thank you — we've received your brief and will be in touch within 48 hours.<br><br>Get ready to build something great.</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ── SITE FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS0AAAEtCAIAAADSgaG5AAAj7klEQVR4nO3dd1wT9/8H8MslhBEI08FWGQIiOHBUnHW0ItbVimKrorbWb13062qrti6stWpbtN+qrQusWq1aV/u1FdyrdSACiiCCIGhEQhiBzN8f/B58UXKXu3B3n0vyfj76B+ZzuXtD88rnxuc+J0hKWvv++zMwAAAiFy5cFEkkEg8PD9SVAGC9nJ2lOOoaAAAY5BAA9CCHAKAHOQQAPcghAOhBDgFAT0TSlpeXV1dXz1kpAFgwgUDQqVMYUStZDidMiM/MzGShJACsjkAgqKurJWqF/VIA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOhBDgFAD3IIAHqQQwDQgxwCgB7kEAD0IIcAoAc5BAA9yCEA6EEOAUAPcggAepBDANCDHAKAHuQQAPQghwCgBzkEAD3IIQDoQQ4BQA9yCAB6kEMA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOhBDgFAD3IIAHqQQwDQgxwCgB7kEAD0IIcAoAc5BAA9yCEA6EEOAUAPcggAepBDANCDHAKAHuQQAPQghwCgBzkEAD3IIQDoQQ4BQA9yCAB6kEMA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOhBDgFAD3IIAHqQQwDQgxwCgB7kEAD0IIcAoAc5BAA9yCEA6EEOAUAPcggAepBDANCDHAKAHuQQAPQghwCgBzkEAD3IIQDoQQ4BQA9yCAB6kEMA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOhBDgFAD3IIAHqQQwDQgxwCgB7kEAD0IIcAoAc5BAA9yCEA6EEOAUAPcggAepBDANCDHAKAHuQQAPQghwCgBzkEAD3IIQDoQQ4BQA9yCAB6kEMA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOhBDgFAD3IIAHqQQ2B1BEIh6hJeBTkEVse1c5TYrRXqKl4COQRWx97bzykwFHUVLxGhLgAArtm38RHg/OqBIIfA6ti18URdwqsgh8Dq2Lf2FIrtUFfxEsghsC5CB4nIUSp0kOA2Yp1ahbqc/8evvWQA2GbXqi2GYQJc6Ng+EHUt/wM5BNbFwdu/4QenoE5oK2kKcgisi8QvoOEH107d0FbSFOQQWBdpcFjDD44BITbOrmiLaQQ5BFbERuoi8Wnf8LMAx1v3HYK2nkaQQ2BFWvUeiAkEjf/0GvKW0EGCsJ5GkENgLYQOEs9ho5u+InKUBkya1TSZqEAOgVWwkTqHfPSpuNkBoXvPfsEfLBA5OCKpqhFcxwcWDccd2wV5dI9u3W+o0N7B4CLuUX1dOnV7djmt4vbVqoe5OlU9xzVikENgUQQCsYu7fRtP29ae9m19HP0CJH4diOLXlNDewXNwrOfgWL1Oq3zyuOZxQe2TQmVxUU1xgUr+goPCIYfA7LlG9vDo2d/By8+urTcusmnJqgS40MGnnYNPu8ZXVJUVVQ/vl/11TJGb1dJCiUEOgdmryPhbkZvl6B8g8Q908G4n8W1v7+UjwE2/6f6lXvFJcfWjB2qFnLl6DYAcAkugVdZW3susvJfZ8E9cbOvUIdg5JMI1speDjz/FlVQ9vF9x65riQVbN4wKOjxIhh8AC6VT1DbEsOrrXwbeDT8w496i+JMvL794sPLS7tuQRVwW+CnIILFzt44e5W9e7XTsfNHOhwaPHoqOpJScPcl9YU3D9EFiFF7evFR1Oaf56Wfop5CHEIIfAepSlnVTJy5u+oqqsKDy0C1E5L4EcAmuh12pkV842faX0z9+QXLVvDnIIrEj5jUuNP+t1WtnlMwiLaQpyCKxITWG+uqqy4efK+3fVVQq09TSCHALronjw/8NiKu/eRFtJU5BDYF2qC3IbflA8yEZbSVOQQ2Bdah7lYRim12hqHhegruV/IIfAulQXPcT0+trSx3qNGnUt/wM5BNZFW1tTJ3tSW/wIdSEvgRwCq1NdmF9TmI+6ipdADoHVqSl8WPXwPuoqXgLjvIHVeZFxve7pE9RVvARyCKxOXVkJ6hJeBTkEXMDFtjZSF6G9gwDHdWq1rr5OJX+h12pQ18UXkEPAFscOwc4hkdKgMAcvf7Gr26vThOr1qsoXNY8f1RTmKe5nKvLu8epCAscgh4BhYhe3tq+PcO/V386tNdlyAoHYxV3s4u7auTsWG6dT1b/IuCa7nC7Puo3pdVwVyxeQQ8AYG6mz76hJrfq8bsKkabjY1qNHf48e/etkZaVnjj87f5o/DwnlAOQQMEEgaDsoxm/0u1QmCyVn16pt+wnvew8bW3Rsr+xyGqbXM1Igz0EOQUuJXdwCE+Y7h0UyuU4398Cpc1tHD8nf9V3ds1IG18xPcB0ftIhrRI/IL5KZDWEjaVBY5OffevQawMbKeQX6Q2A675h3/EZPYvV5SbjYNmjGxxL/gMKDOy14HxVyCEwhEAoDpsxt9dpAbjbnNXSU2Nk1b8c3eq2Wmy1yDHII6MPx4JmL3Lr25nKbHj37Y3rswU8bLbJXhBwC2gImz6YdQr2+/oVMJX+hVdbo9ZjIQSJ2dhW7tRLgNM5QePTqr65WPNq/nd6mzQHkENDj9eaY1tGDKS5cX/6s/O+L8qyb1Y/ytHXKV1pxG7Fj+yCXsK5u3V6z9/ShskLPwbG1TwqfnT9Nr2jegxwCGpyCwvzGTKaypOL+3ZLfD8mzb5PsRurUKkVuliI3q+hoqlNgqPebY10jehg969Nh4szax48ap5mxDHDdAlCF29oFTU80uidZ//zpveTVWV9/Js+6Rf1Yriov597mNVkbliqN3QwhEImCZszHxbYU12wWIIeAKr8x79m6kw4ZxTDZlfSMFfMq7vxt2iYU9+/eWZX4zNj0vnatvf3GTTFtE/wEOQSUOLYP9nx9BNkSev2jX37K2/FN8+NAWnSq+vyd3xUdSSHvS9sOHO7g26ElG+IVyCGgpN07CWRHbnp93u7k0j+PMbW5klOHyJ8AI8Dx9hOmM7U55HhxnmbKlMlTplA6+m+qvr5++HDSb2gKcBwPDAyMiIjo0KG9t7e3q6urVCrFMEytVsvlFeXlLwoLC3Nzc2/evFlRIW/htmJjYz/+eH4LV2KQVqutqamtrKwsKirKz8+/cyfz7t27KhVj9yu4denlFBRGskDRrymySww/K+LJ6aM2zq5ew0YTLSANDncJ7ybn07TcJuNFDn19faOjo+m+q77e9Cf1eHp6jh49aujQodHR0S4uzkaX1+l02dk5f/7559GjR69evWbaRtu2bWPCr2ma6urqCxcunjp16tChQy9eVLRwbd4jxpO0yq6kl/z31xZuwqDCQ7sdfNu7hBIOXvWJjbOMHJrxfqlQKKT7FhzHx4wZfeLEsfz8B998s2nEiBgqIWx4Y3h4p8TE+efOnc3Ovjt37lxHR0f6JXPH0dFx+PA3k5O/e/SoYO/e1D59XjN5VdKO4Y7tAolalWXFD1P/Y/LKjdDr8n/apKmpJmp3CghxCgxla+scMuMc4nSGYggEgkmT4jMzM/bv3zd06FATMtwoICBg/fp1ubn35s+fZ2vL97Pntra2b789Lj097fTpP3r16mnCGtqSnJ7R6/P3bGH1EYKqyopHB3eQLNCm/xvsbZ0z5p1DAbWR/p06dbpw4fyOHT8FBhJ+r9Pl7u6+bt2Xt27deOMN8/gcDBgw4OzZ9O3bt3p4uFN/l8jB0TWiB1Gr7OrZKvaf1iK7dKb60QOiVveo6JbffIycGecQo7ZrOn/+vCtXLvXoEcVGAQEBAceOHd21a6eLiwsb62cWjuOTJ0++fftWTEwMxbe4RfUhmuRCr9M+Pn6AuerIFB0x8Gj7BriN2KVzd27KYI8l51AikRw4sH/dui/Z3nucOHHCP/9c7927F6tbYUqrVq2OHPn1yy/XUtmxdyPuDF/cvFov4+hO+crsjOpHeUSt7tze+cEGi82hp6dnenra6NGjuKnE19f39On/Tp78Hjeba7nExPm//nrI3t6eZBmBUCjt2Jmo9dnFP1moi1Bp2gmiJufQLhwWwgpe5FCn06mJ6XSEs+gR5bBDhw7nz5+NjIxgrWQDbG1tt279YdGihSa8V6PRkPwFjCL5E5GIiRl+4sQxJycnogUk/gFCO8NB1VQr5NkZJmzUZC9uXNbW1xlsEkkc7dtSul2Dt3hx/TApaW1S0lqi1gsXzvXsafhEn8Ec+vv7//XXaW9vb4pbLywsTE9Pv3797+zs7KKix3K5XKVSiUQiFxcXf3+/0NDQ3r17DR482NfX1+iqcBxftWqlSCQi+XUMmjIl4dChQ7Te8sp2nZycvLy8QkI69u7de8iQIeHhnai8sW/fvkeO/Dpy5Cil0sBgNIlfANEbKzJvcDzLqE5VL8+84R5l+AKsY0BHZVkxl/Uwixc5NJlQ+Gp/7u7udvLkcSohrKiQ7969e+/en+/cudO8Va1WK5XK0tLSq1ev7dy5C8Ow3r17JSRMjYuLI9+XwzDs88+Xy2Sy7dt/pPprtJhOp6usrKysrMzJyTly5CiGYWFhYdOmJSQkTDV6nbNfv34pKXveeWe8vtl4Tolve6J3KXKzWlw1bRV3CXMo8fKXcVwNo3ixX2oyHH+pPxQKhfv2/RwUFET+Lrm88rPPlgYEBC5evMRgCA26evXazJmzQkM77dixU2tslpRNmzYOGNCf4prZkJ2dvWDBwpCQ0OTkzWq1kfnqR46MXblyRfPX7Vp7Eb2lCsXtf1X594ia7KjdRsxb5p7Dl+pftmzpgAFG5tg7ePBQeHjnr7/eUFNTY8IWS0tLZ8361+uvDy4oIHu6uo2NTWpqSqtWrUzYBINksucLFix87bXozMy75EsuWPDvIUOGvPKirZubwYX1Oi2SRybVP39GdBOGnUcbjothlnnnsOnxYbdu3RYuXECycG1t7YwZ77/77nsyWUt3Ya5evda7d58zZ8hGNrdu3Xrz5uQWbogRmZmZffv2S0khvASHYRiO4z/+uM3Z+aVRfmIXD4ML18ueIXlUk16jrq80PFbW1h3xV14LWUgOBQLB5s3JIhHh4W55efmbbw5PSUllatNyuXzUqDENB2NERo8eRf2KOavq6upmzPhg9eo1JMt4enquWbO68Z8CoZDonvd6eTnD9VGmlr8w+DoutjXrUTUWksP4+Indu3cjWkwurxwxYuS1a9eZ3bparX7vvcnp6ekky6xbt7YlY1mZtWrV6hUrVpIskJAwNTw8vOFn3EZMtJiGoFPigLaO8GjCxonSkH1+soQcikSiZcuWEi2j0Wji4+Nv3brFRgFqtXrChHiSY8Xg4OB3353ExqZNk5S0luRErkgkWrHii4afcRvCZzZp6mppbVTs6iHtGG7wP5EDvdtWtErDlxAxDMNtjZzH5jNzv24hxDBs4sQJ7dsTnmFPSlp75kwaezXI5fL4+HfPnUsXiw13IPPnz9u9ew97BdCVmPhxZGQE0SXZmJjhYWFh2dnZmIDwO5ruzBetXhvoN8bwSKPsTcsr6YwHINk0yRcH/1lCfzhr1iyiBTIy7qxb9xXbZdy8eXP9+q+JWsPCwgYO5NGTUtRq9bRpMwxeuMcwDMfxxMR55GvQG7sQwh6tirA/pHjzDT+ZfQ4jIiJIjgwXLVqk0XBxZm/duq8KCwuJWvk27vTBgwcbN24iah03blzD5CBE9CYNo2OEnpP/m9wz+xy+/fY4otaLFy+ePXuOm0rq6+vXrEkiao2NjSXaa0Vl06Zvnj9/brBJIpGMGTOa23Ko0muQdcWsMvscDhs2jKh1yxbW5mswZN++/c+ePTPY5Ozs3L9/Py6LMaqqqorkhI2Ryy3odgChP+Qjd3f3iAjDN+ZUVlaePHmSy2JUKtXBg4RjtQcOHMhhLZTs2LGT6EaNgQMHks2SiCO7EoNk/AAHzDuHXbt2Ibo6d/78hZZM6GaaY8cIJ/CMiuLdPeNFRUV37mQabHJxcW7Xzp/ojTi6K6I6K3z+oY+PT+MgTJlMVlVVxUlJNHTuTHiX6uXLl7mspMG1a9fVarWNoRPo/v6EH2uE0tPTu3QxPCthQEBAJcG7BAQzZXBBi+wUEavI+sOjRw/n5GQ1/Dd+/Duc1UQdyXf23bsIbsxRKpU5OYbvCfDx8eHPwJpGJLebeHkS3mwhQPeL6DHry2FT/Lw44+VF+Fl58IBwhi9WPXr0yODrYrGY5M53VIqKioianIlndkWYQ0tl3jkk+mRrNJriYjR3Z5eUEN4QxMMcVlYqiJqcnAhHnCH8MJBcumx+H7MZoZpDg8c8yEkkEoOvl5eXG735lSUKBcknm3c5JGFDPM5bIEQ3HNKcw0aCag75OXE10Y1Oz54hmyShro5w4BVJD4MKyegCkYhw51OAo+sPuZ0UhzNUc2he3+VyObIbc0j6YVtbOy4roUIiIbxnj2znk3gIONsECMcQsInqHxT5FA+0VFebMucFI0iOUni4b+/hYdL/VsvMAkpUc+jn58dqHczi4aVOjHQnEBVPz7ZETXV1XI+CsGZUc9i5czirdTCrhvhJXWwj6Q95mMOOHTsSNZWXE05+IdCj6xB5ed6+5ajm0Nvb24y6RIT7pSRsbHh31zXJdMMkt3Fh6M7TWCoaB9wjRvBiyiMqUF20wEj7Q76Np3FwcOjenXDUK+mAJIT9IbIts4rGN/S77777n//8wF4pDKJ7769QKAwIMDyHvEKhKCsrY6Io3o2FGDBggJ2d4VO4xcXFj4uKeDklKL/+hkyhkcOoqO49ekT9/fc/7FXDFLo5dHd3z8w0PEvK/v0HpkyZSn1VJP0hrQcYc2DChDiipv/+9zSXlVAn4NnfkCn0fqtFixaxVAezuJkLgy5e5dDLy4vkpvvDhw+TvRmOD5lG75MRGzuiZ0/CB1Pyh9HnT7DHXPrDzz77lGiMVHFxcVoa2aSsCM+XCsz8jlki9H4rHMc3bNjAq88TMEGPHlEJCVOJWrdv/9HIAxUR9odCy+yKaSeqZ88epj1qk0sobwjg/UBkqVS6c+cOopO3VVVV27ZtI18Dyt+QZ+e6mGJKz7Zs2dLmzwbiFb6dmWzAh4gKhcI9e3aTPJpuy5bvX7wwMjoX6SBPPv6fbTlTcigSifbt28vDCVcaIe0PUW3ZOBzHf/xx+/DhbxIt8PTp06+/3mB0PQjvt4DzpS+RSqWnTp3s168vs9UwhZ9HsGj7Q4lEcuDA/vj4iSTLrFixkp9DcxsJ0N3qwSqy64dbtnz/0Uf/Imp1dnY+efLE4sVLeHhxn+7IFaVS+f33hic7vXnzJq1V8WHns7mQkJCUlD1Ec0w2OHfu3I4dO6mtD8bTMIwshzt37nJ1dYmPjydawNbW9ptvNsXExMyfn5ifn89CeSYieRCiQVVVVYmJH7NUTCMjJyHZIRKJZs/+aPnyZURzFzRQKBQzZnxA9UsE3W4/P4/8W85ILz9nzrx79wgfSt5g2LCht27dSE7+ztfXl7nCWoRuDrnBcQ5xHI+LG//PP9fXrfuSPIQYhn300RySOaP4Q2+h+6VGfqvq6uq33x5v9ASara3tBx+8n5199+ef9w4bNgz5DT4Ic0jSpXCWw6CgoKVLP8vJydqzZ3doaKjR5dev//qXX36hsQGU/SGqLbPL+Of1wYMHY8eOPXHiuKOjkelVxGLxuHFjx40bq1Aobty4kZFxp7CwUCZ7XlHxoq6uTq1Wa7VanY724ZODg5Hv8ub42R+SRLR9+3bduhE+tYocjgukUqmzs3NQUFBoaGjfvtG07lDbu3fvsmXLaW2Rr2Hg45E5RZQ+r1euXH3rrVGHDx92IZ7TsimpVDpo0KBBgwa1rDbTIc2hKf3h6tWrVq9exU49ZHbv3v3hh/+if26Jp0E0X1T3ti9duvz664OJJsnlGx7ecYshOk9DRKvVLl/++QcffGhCVXrIIdNoHPVmZWX16RN96tTv7FXDFH4eH2p582yGJ0+ejBz5lslPSubrfqkZo3f2qbz8xZgxY2fPnlNZSfQMEl4QIXwQCjGe9If79x/o3j3qzJk0k9cAOWScKWeBt2//MSKiS2pqKsLbi8jxsz9EnsP8/PyRI0dNmTLV6AlwYyzz4gFCJv5By8rKpk9/v1u3qH379iOcDIYI32aCaYAwh0VFRbNnz4mM7Hr6NE9vtLdyLfpiu3fv3tSpCR07hq5YsZJX42kQji/lVX9YV1d34sTJt98eHxIStn37j0x9YyKcNtFSMbD/VlJSkpS0NilpbWRk5PDhbw4aNLB79+5o5+FH2B+ShI2boacajSY3N/fixUtnz547ffo0G+O24fiQcUweR2VkZGRkZHz55Tocxzt06BASEuLr6+Pu7u7o6GhaMHQ6nWl9iNGxeOw5cOAXLy8vDw8PtVpdV1en1WoFAkHDqMisrKyHDx8yvkWVSqVUKisqKp48KS0qKrp37x77DySH40OGsXI+Q6fT5eXl5eXlsbFynpPL5Z9//gXqKoCZgS82QJul3vSAEOQQ0GbG4zj5CnIIaIPukHGQQ0Cfhd4EiBD8QQFAD3IIaIPdUsZBDgFtMJ6GcZBDANCDHALaLHUSUYTgDwoAeuzepyeRSJycnBwcHGxtbZsOwmgcOGryCFJzVF1dbXSuLf6oMbejwFatWrfG+Pjcywbk9wAxmcO2bdtGR0dHRXUPDQ0NCOjg4+Pj4ODA4PrN3dGjv40ePQp1FVRt2rr9N6I2Xl7IX71q5dsDXkNdhYkYyGGbNm2mTJk8ZsyYLl0i+flgCZ7g593JgA9alMOgoKBPPln8zjvvIJ842CzAlxQgYmIOpVLp558v//DDmfycsZef+PkIGsAHpqRoyJAh27dv9fLyYrway2YxOYTrFoyj9wcVCoXr1n15/PhvEEITqFQq1CUAnqLRH7q4uKSm7hk6dCh71Vi26mpeP+KTBj6eLjVvVHPYpk2bkydPdO4czmo1lq2yUoG6BMBTlHLo6+v7xx+nAgMDqa9XqVRmZWXn5t4vKHhUXl4ukz1XKpUqlcqEq/YbNqzv2LEjrbfU19dPmvReQUGBvb2dRCKxseHudO7u3bvc3d2av15XV1dWVkb0rnXrvrpw4SKbddFWUiF3nrmUoJGPHeJ33323a/3alq/Hz8/3+++3GGy6cydz+fLPNRpTRgsIBILjxwmvyBrPoYeH+++/n6QYwpycnEOHfv3rr79u3rzF1OGQCXP4X7t27fjx44xsnZaAgACDIcQw7OHDhyTnae7cyfzzzz9Zq8sUNlKXKNQ10JKVlV1dkNvy9YSEhBA1Xb58+fffTXy+C/mkPkZyiON4ampKUFAQ+WJarfbo0d82btz4zz83aBfIgpKSJ0i2O3JkLFHT7dsZcP0QEDGSw88++9ToYwyvXr06e/bczMxM5qpqKTYmz6Vi8uTJRE3nz5/38PDgshj2wHxtjCP7hn7jjWGffLKEZAGtVrt69ZpBgwbzKoSo9O/fr1OnMKLWtLR06A8BEbL+cOXKFSRDIlUq1bRpMw4ePMhCVWZp6dLPiJpu3rxVWFgI3QggQpZDkhBqNJqEhOmHDh1ioSQGcN/zxMTEDBgwgKj1l19+wSxpfCl8nzDNxNGhixcv4SyE69dvaNOmdfPXxWLxxo0bDL5FJOL0zgZHR8dvv91E1KpUKlNSUjA4rALETMlhSkrK5s2GL7Cw4dixYwZft7e3J84hp6PPt2zZ7OfnR9R64MCB58/LMUvqDwHTaH8y8vPz581LZKMUBnH5XO758+dNmBBH1FpfX5+U9GXDz5BDQIT2J2POnLk1NTVslMIgzu64nT592tq1SSQLbNu2vbCwsOFn2C8FROjl8PjxE2fOpLFUCoO46Xk+/fSTzZuTSbZVWlq6cuUqjqsC5ojecdTq1atZqoNZbH/iPTzck5OTx44dQ7KMTqf78MN/KRT/G9sN/SEgQuPzeunSpdu3M9grhUGs5jA+fuKtWzfJQ4hh2ObNW/744w/OqgJmjUZ/mJKSyl4dzGLjE4/jeGxs7KefftK1axejC6elpS1Z8skrL0J/CIhQzaFWqz1x4iSrpTCIwRwKBIKuXbuOHBk7ceKE9u3bU3nL7dsZcXETtVote1UBC0M1h7m5uTKZjPp6e/SIeuutt0wqiSobG8KLEyEhHVetWmnymnEct7W1dXV18ff379w5wsXFmfp7//nnxsiRI5seFjZirz8MDAycMsXwEPPTp08jv7OxKv9+1cP7AtzASWytUsl9PTxENYe3bt2itd7IyMhFixbSr4cZAQEBSLZ+8eLFMWPGGQwhxmZ/2K5dO6LfVy6XI8+h4n7m3bWL0NbAc1Q/Gfn5D1mtwwKkpqYOHz6CKIQYHB8CYlRzSGun1Nqo1eqFCxdPn/4++RQElnN8aCHzP/II1f3S2tpaVuswX1VVVePHx6WlpRtd0mr7Q6GdvTQ4XGDoa6gqP0ddBdNnUc4hyUkRKycUCvv06XP58pW6ujryJS2nP6Spdb+h7cZPN9iUvWl5ZbZ5XJRmFdVPhqurK6t1mC8HB4dly5ZeuXIpIiKCfEmLySHdiclxDufLM1NUPxkk9/UADMPCwsLOnUsfN24cyTJWu18KjKKaQ5KZV0ADBweH1NQ9s2Z9SLSAxfSHcKKGcVSPD7t162ZjY6NWqyku/9tvx+7cuWNqVS/54Ycf6H4LXLlyZdGixS3ZqI2NjaOjU7t2/p06dYqOjg4P70TlXTiOb9y4QafTbd26rXkre/3h9evX+/Xrb7CpqOgx89ujGUPZpTOV9wx/GJSlxQzUY/6o5lAikURH9zl79hzF5WUyGVOXOmpqqum+RS6vvH79b0a23sDb23vSpPhp0xKMDm3DcXzTpo2lpWXNpxHAcbZyqFAomP19yen19CZlV1VWqCorGNq4Ze7b09hTGjt2LHt18FxJSclXX60PD4+YOfPDkpIS8oWFQuFPP20PDg5+5XUzOz7kZbVm9jekjEYO4+LirPx59xqNZteu3RERXb7//j/kD+qQSqUpKXtemSbHvI4PDQ4HRQ9y6OLiPG1aAnulmIvq6urExI8nTJhI/uCNLl0ilyx56RjVzL7LSb41ED5QlasZTzhG7xv63//+2Mq7xEa//XZs6NA3nj59SrLMwoULmh5Pmlt/yMdqLfVRxPR+Ky8vr1e+461ZRkbG0KFvlJeXEy1gZ2eXlLSmyQvm1B+S7ZfSf3geUwTQHzZITJzfpUskG6WYo/v3748ePYZkRNvo0aMax9mYWX9I/Imne76UQQIhpzPTcob2J0MsFu/dmyqVStmoxhxdv/43ybVKHMc//jix8WeuimIAaQ65LOQlAqE5/Q2pM+W3CgwM3L//Zxj53Wjr1m0kTxEdN25s27ZtMXM7T0PW86ALokAA+6VNDB48eO/eVIhiozlz5hHtnYrF4okTJ2Dm1h/iPN0vNae/IXVkv9WzZ89IWkeNeuvo0cNOTk5Ml2SWCgoKdu3aTdQaFxeHmV9/SPjZECDMoVmd66KOLIfTps14/JhsdOKQIUMuX74YGQmnbTAMw9av/1qj0RhsioyM8Pb2Nq/+kIReh+4A0VL+hq8g+63KysqmTk0g+mw1CA4Ovnjx/IoVX0gkEqZrMzPFxcVEDx3AcXzIkMHm1R+S0KO7bmGpjHy7XLx4acmST8mXEYvFS5YszsnJWrDg3x4e7szVZn4OHDhA1BQd3ce8+kOSczH6ZlOzcsgyb7ky/slITk7etm270cXatGmzZs3qhw/zjxw5PHPmB5GRkVbYQ/711xmicaddunS1mP4Q4XV8hKeIWEXpqujcufMcHSXx8fFGl7S1tY2JGR4TM7zhnwqFQqlU0p1G4RVubm4teTuXnj59WlBQEBAQ0LwpODiorKyM6I2bNydv2LCezdJo25T6yzWCJr2W7FCFVXoNwq6YRZRyqNfrp02bUVb2tPGSNEVSqdTarvjn5NwzmEN7e/uGq4gGubq6sFiTSeyI75bUocuhjvRshfmiesSi1+s/+eTThIRp/H8IKVqNTx1tzsvLk8tKWkpDOBcrwjDoVPWoNs0qemcOfv55X//+A/Py8liqxgKQzOft6OjIZSUt1MHHh6hJW4dsMlut0jK7AbL90k2bNigUVc1fl8lkgYGBrJXEgO7dux0+/CuSTQcGGtgpbWBvb89lJS00fuyojNTDxQpljUarwzAdhuOYTiTAXMU2cSOH+E0YgaSqklr1ueLHFWqtGsMxAYbrdSIBJsIwNzvxiNmz7DFtw0lpHMeb/oDjgldeFwjwRq8s7+xMeCT15ptvmPy5Ij9LJ/j22+/mzp1j2qoBAC2XlpZmTle0ALBUkEMA0IMcAoAe5BAA9CCHAKAHOQQAPcghAOgJHB2lML0FAAhptdr/A5A+T4c6PLb2AAAAAElFTkSuQmCC" alt="JADA GREAT" style="height:60px;width:auto;margin-bottom:16px;display:block;">
+      <div class="footer-tagline">Great isn't the goal.<br>It's the standard.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <span class="footer-link" onclick="showPage('home')">Home</span>
+      <span class="footer-link" onclick="showPage('services')">Services</span>
+      <span class="footer-link" onclick="showPage('about')">About</span>
+      <span class="footer-link" onclick="showPage('work')">Work</span>
+      <span class="footer-link" onclick="showPage('contact')">Start a Project</span>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <a class="footer-link" href="mailto:jadagrea8@gmail.com">jadagrea8@gmail.com</a>
+      <a class="footer-link" href="https://www.behance.net/koyejojoshua" target="_blank">Behance Portfolio</a>
+      <a class="footer-link" href="https://www.instagram.com/jada_gr8?igsh=Z2VwM3J2amoyOTE=" target="_blank">Instagram @jada_gr8</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 JADA GREAT Creative Agency. All rights reserved.</div>
+    <div class="footer-copy">Built with precision. ✦</div>
+  </div>
+</footer>
+
+<script>
+// ── VALID PAGES ──
+const PAGES = ['home', 'services', 'about', 'work', 'contact'];
+
+// ── PAGE ROUTING ──
+function showPage(id, updateHash) {
+  if (!PAGES.includes(id)) id = 'home';
+  document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === id);
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  closeMenu();
+  // Update URL hash without triggering hashchange loop
+  if (updateHash !== false) {
+    history.pushState(null, '', id === 'home' ? '#' : '#' + id);
+  }
+}
+
+// ── HANDLE BROWSER BACK/FORWARD ──
+window.addEventListener('popstate', function() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  showPage(hash, false);
+});
+
+// ── LOAD CORRECT PAGE ON RELOAD ──
+(function() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  showPage(hash, false);
+})();
+
+// ── HAMBURGER ──
+function toggleMenu() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('nav-links').classList.remove('open');
+}
+
+// ── THEME TOGGLE ──
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  if (html.classList.contains('light')) {
+    html.classList.remove('light');
+    btn.textContent = '🌙';
+    localStorage.setItem('jg-theme', 'dark');
+  } else {
+    html.classList.add('light');
+    btn.textContent = '☀️';
+    localStorage.setItem('jg-theme', 'light');
+  }
+}
+
+// ── RESTORE SAVED THEME ──
+(function() {
+  const saved = localStorage.getItem('jg-theme');
+  if (saved === 'light') {
+    document.documentElement.classList.add('light');
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = '☀️';
+    });
+  }
+})();
+
+// ── FORM SUBMISSION ──
+const form = document.getElementById('brief-form');
+const successMsg = document.getElementById('success-msg');
+const submitBtn = document.getElementById('submit-btn');
+
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.style.opacity = '.6';
+    submitBtn.style.pointerEvents = 'none';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {'Accept': 'application/json'}
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('brief-intro').style.display = 'none';
+        successMsg.style.display = 'block';
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else {
+        submitBtn.textContent = 'Error — Try Again';
+        submitBtn.style.opacity = '1';
+        submitBtn.style.pointerEvents = 'auto';
+      }
+    } catch(err) {
+      submitBtn.textContent = 'Error — Try Again';
+      submitBtn.style.opacity = '1';
+      submitBtn.style.pointerEvents = 'auto';
+    }
+  });
+}
+</script>
+</body>
+</html>
