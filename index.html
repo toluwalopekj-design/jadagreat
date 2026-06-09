@@ -1356,3 +1356,49 @@ if (form) {
 </script>
 </body>
 </html>
+<style>
+/* Smooth Scroll Animations */
+.auto-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.auto-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. ADD SEO & ACCESSIBILITY 
+  const meta = document.createElement('meta');
+  meta.name = "description";
+  meta.content = "JADA GREAT is a premium creative agency offering custom brand identity, graphic design, and monthly retainer packages.";
+  document.head.appendChild(meta);
+
+  const logo = document.querySelector('.nav-logo img');
+  if(logo) logo.setAttribute('alt', 'JADA GREAT Agency Logo');
+
+  const themeBtn = document.getElementById('theme-toggle');
+  if(themeBtn) themeBtn.setAttribute('aria-label', 'Toggle light and dark theme');
+
+  // 2. ADD SMOOTH SCROLL ANIMATIONS 
+  // This automatically finds your specific design cards and animates them
+  const cardsToAnimate = document.querySelectorAll('.card, .pkg, .retainer, .portfolio-card, .svc-p-card');
+  
+  cardsToAnimate.forEach(card => card.classList.add('auto-animate'));
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target); 
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cardsToAnimate.forEach(el => observer.observe(el));
+});
+                      </script>
+                      
