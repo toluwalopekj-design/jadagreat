@@ -168,8 +168,31 @@ html.light #theme-toggle{color:var(--teal);}
 .work-card:hover .work-overlay{opacity:1;}
 .work-overlay{position:absolute;inset:0;background:rgba(29,184,204,0.08);opacity:0;transition:opacity .3s;}
 .work-glyph{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',monospace;font-size:80px;font-weight:900;color:var(--teal);opacity:0.06;pointer-events:none;}
-.work-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;position:relative;}
+.work-title{font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:4px;position:relative;z-index:2;}
 .work-type{font-size:11px;color:var(--teal);position:relative;}
+
+/* Portfolio Thumbnails */
+.portfolio-thumbnail {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+.work-card:hover .portfolio-thumbnail {
+  opacity: 0.75;
+}
+.bincom-thumb {
+  background-image: url('bincom-bank-thumb.jpg');
+}
+.novo-thumb {
+  background-image: url('novo-amor-thumb.jpg');
+}
+.raebel-thumb {
+  background-image: url('raebel-thumb.jpg');
+}
 
 /* ══════════════════════════════════════
    SERVICES PAGE
@@ -856,15 +879,18 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     <div class="sec-label">Selected Work</div>
     <div class="work-grid">
      <div class="work-card" onclick="window.location.href='bincom-bank-case-study.html'">
+  <div class="portfolio-thumbnail bincom-thumb"></div>
   <div class="work-overlay"></div>
   <div class="work-title">BINCOM BANK</div><div class="work-type">Visual Identity & Brand Design</div>
 </div>
       
       <div class="work-card" onclick="window.location.href='novo-amor-case-study.html'">
+        <div class="portfolio-thumbnail novo-thumb"></div>
         <div class="work-overlay"></div>
         <div class="work-title">NOVO AMOR</div><div class="work-type">Poster Design — View Case Study</div>
       </div>
       <div class="work-card" onclick="window.location.href='raebel-mini-skirt-case-study.html'">
+        <div class="portfolio-thumbnail raebel-thumb"></div>
         <div class="work-overlay"></div>
         <div class="work-title">RAEBEL: MINI SKIRT</div>
         <div class="work-type">Afro Dancehall Campaign Strategy</div>
