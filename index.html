@@ -194,6 +194,17 @@ html.light #theme-toggle{color:var(--teal);}
   background-image: url('raebel-thumb.jpg');
 }
 
+/* Portfolio page thumbnails */
+.p-thumb.bincom-thumb {
+  background-image: url('bincom-bank-thumb.jpg');
+}
+.p-thumb.novo-thumb {
+  background-image: url('novo-amor-thumb.jpg');
+}
+.p-thumb.raebel-thumb {
+  background-image: url('raebel-thumb.jpg');
+}
+
 /* ══════════════════════════════════════
    SERVICES PAGE
 ══════════════════════════════════════ */
@@ -279,7 +290,7 @@ html.light #theme-toggle{color:var(--teal);}
 .portfolio-card{position:relative;overflow:hidden;border:1px solid var(--teal-border);cursor:pointer;transition:all .3s;}
 .portfolio-card:hover{border-color:var(--teal);transform:translateY(-4px);}
 .portfolio-card:hover .p-overlay{opacity:1;}
-.p-thumb{aspect-ratio:4/3;background:var(--charcoal);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.p-thumb{aspect-ratio:4/3;background:var(--charcoal);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background-size:cover;background-position:center;}
 .p-glyph{font-family:'Orbitron',monospace;font-size:60px;font-weight:900;color:var(--teal);opacity:0.08;}
 .p-overlay{position:absolute;inset:0;background:rgba(29,184,204,0.12);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
 .p-overlay-text{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);}
@@ -1132,20 +1143,20 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 
     <div class="portfolio-grid">
            <div class="portfolio-card" onclick="window.location.href='bincom-bank-case-study.html'">
-        <div class="p-thumb">
+        <div class="p-thumb bincom-thumb">
           <div class="p-overlay"><div class="p-overlay-text">View Case Study →</div></div>
         </div>
         <div class="p-info"><div class="p-title">BINCOM BANK</div><div class="p-type">Visual Identity & Brand Design</div><div class="p-desc">Full visual identity system for a financial institution — building authority and trust through strategic design.</div></div>
       </div>
       
       <div class="portfolio-card" onclick="window.location.href='novo-amor-case-study.html'">
-        <div class="p-thumb">
+        <div class="p-thumb novo-thumb">
           <div class="p-overlay"><div class="p-overlay-text">View Case Study →</div></div>
         </div>
         <div class="p-info"><div class="p-title">NOVO AMOR</div><div class="p-type">Poster Design — Case Study</div><div class="p-desc">North America Tour poster design — cinematic, bold, and crafted to capture the mood of the music. Full case study available.</div></div>
       </div>
       <div class="portfolio-card" onclick="window.location.href='raebel-mini-skirt-case-study.html'">
-        <div class="p-thumb">
+        <div class="p-thumb raebel-thumb">
           <div class="p-overlay"><div class="p-overlay-text">View Case Study →</div></div>
         </div>
         <div class="p-info">
