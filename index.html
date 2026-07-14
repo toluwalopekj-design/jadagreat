@@ -728,19 +728,44 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
   .work-grid{grid-template-columns:1fr 1fr;}
   .svc-preview-grid{grid-template-columns:1fr 1fr;}
 }
+  
+  /* ── MICRO-TYPE MOBILE NAV ── */
+  nav {
+    padding: 0 12px;
+    gap: 8px;
+    justify-content: space-between;
+  }
+  
+  .nav-logo img {
+    height: 26px; /* Scaled down slightly to maximize screen real estate */
+  }
 
-/* Mobile */
-@media(max-width:768px){
-  nav{padding:0 16px;gap:12px;justify-content:space-between;}
-  /* Nav always visible on all screens */
-  .mobile-cta{display:block;background:transparent;color:var(--teal);border:1px solid var(--teal-border);font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;padding:12px 20px;text-align:left;cursor:pointer;width:100%;transition:color .2s;}
-.mobile-cta:hover{color:var(--teal);}
-  .nav-cta{display:none;}
-  #theme-toggle{opacity:0.4 !important;width:20px !important;height:20px !important;padding:4px !important;margin-left:auto;}
-  #theme-toggle:hover{opacity:0.9 !important;}
-  #theme-toggle svg{width:16px !important;height:16px !important;}
-  .hamburger{display:none;}
-  .nav-logo img{height:36px;}
+  .nav-links {
+    gap: 12px !important; /* Overrides the massive 40px desktop gap */
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 7.5px !important; /* Premium micro-typography */
+    letter-spacing: 0.15em !important; /* Tighter tracking prevents cutoff */
+  }
+
+  /* Keep the header brutally minimal on mobile by hiding the bulky buttons */
+  .mobile-cta { display: none !important; }
+  .nav-cta { display: none !important; }
+
+  #theme-toggle {
+    opacity: 0.4 !important;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 4px !important;
+    margin-left: 4px;
+  }
+  #theme-toggle:hover { opacity: 0.9 !important; }
+  #theme-toggle svg { width: 14px !important; height: 14px !important; }
+  
+  .hamburger { display: none !important; }
+
   .hero{padding:40px 20px 56px;}
   .hero-headline{font-size:clamp(28px,9vw,48px);}
   .container{padding:40px 20px 64px;}
