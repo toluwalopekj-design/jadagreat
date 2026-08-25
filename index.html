@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JADA GREAT — Creative Agency</title>
+<title>JADA GREAT — Strategic Creative Agency</title>
   <meta name="google-site-verification" content="Vq4XyBWxoA4H8AiYVgs4UMj_PhcaaEOZ1Ha0Wn2v_SM" />
+  <meta name="description" content="JADA GREAT is a strategic creative agency that helps businesses close the gap between what they've built and what the world sees. Brand identity, creative direction, and communication strategy.">
   <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
@@ -502,6 +503,9 @@ html.light .pkg-price{color:#0D0D0F;}
 html.light .pkg-price sub{color:rgba(18,24,38,0.45);}
 html.light .pkg-turnaround{color:#0A6B78;}
 html.light .pkg-tag{color:#0E90A0;}
+html.light .pkg.bronze .pkg-tier{color:#9A5B21;}
+html.light .pkg.silver .pkg-tier{color:#5E6973;}
+html.light .pkg.gold .pkg-tier{color:#8F6F1E;}
 html.light .retainer{background:#FFFFFF;border:1px solid rgba(14,144,160,0.15);box-shadow:0 1px 8px rgba(0,0,0,0.05);}
 html.light .ret-tier{color:#0E90A0;}
 html.light .ret-price{color:#0D0D0F;}
@@ -792,6 +796,14 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
   .mission-strip{padding:48px 20px;}
   .pkg-grid,.pkg-3{grid-template-columns:1fr;}
 }
+
+/* Restrained scroll-reveal for cards */
+.auto-animate{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease-out, transform 0.8s ease-out;}
+.auto-animate.visible{opacity:1;transform:translateY(0);}
+html.light .hero .body-muted[style*="border-left:2px"]{
+  border-left-color: rgba(14,144,160,0.2) !important;
+  background: rgba(14,144,160,0.04) !important;
+}
 </style>
 <base target="_blank">
 </head>
@@ -809,9 +821,9 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     <a onclick="showPage('services');closeMenu()" data-page="services">Services</a>
     <a onclick="showPage('about');closeMenu()" data-page="about">About</a>
     <a onclick="showPage('work');closeMenu()" data-page="work">Work</a>
-    <button class="mobile-cta" onclick="showPage('contact');closeMenu()">Start a Project</button>
+    <button class="mobile-cta" onclick="showPage('contact');closeMenu()">Start a Conversation</button>
   </div>
-  <button class="nav-cta" onclick="showPage('contact')">Start a Project</button>
+  <button class="nav-cta" onclick="showPage('contact')">Start a Conversation</button>
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light and dark theme" style="background:none;border:none;cursor:pointer;padding:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;opacity:0.35;transition:opacity 0.2s;color:var(--teal);">
     <svg id="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
       <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
@@ -828,76 +840,73 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 <div id="page-home" class="page-view active">
 
   <div class="hero">
-    <div class="hero-eyebrow">Creative Agency</div>
+    <div class="hero-eyebrow">Strategic Creative Studio</div>
     <div class="hero-headline headline headline-xl">
-      We Build<br>Brands That<br><span>Mean Business.</span>
+      Has Your Brand<br>Kept Up With<br><span>Your Business?</span>
     </div>
     <div class="hero-sub body-text">
-      JADA GREAT is a creative agency built for brands that <em>refuse to be ordinary</em>. Strategy, design, and storytelling — crafted for the bold and the visionary.
+      Most businesses outgrow the way they communicate long before they realise it. We help businesses close the gap between what they've built and what their brand is actually saying — through strategy, design, and creative direction.
     </div>
     <div class="hero-btns">
-      <button class="btn" onclick="showPage('contact')">Start a Project</button>
+      <button class="btn" onclick="showPage('contact')">Start a Conversation</button>
       <button class="btn-outline" onclick="showPage('work')">View Work</button>
+    </div>
+    <div style="margin-top:48px;max-width:600px;">
+      <div style="font-family:'Orbitron',monospace;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;">Does This Sound Familiar?</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="body-muted" style="font-size:13px;line-height:1.7;padding:10px 14px;border-left:2px solid var(--teal-border);background:rgba(29,184,204,0.03);">"Has your business grown faster than its visual identity?"</div>
+        <div class="body-muted" style="font-size:13px;line-height:1.7;padding:10px 14px;border-left:2px solid var(--teal-border);background:rgba(29,184,204,0.03);">"If someone discovered your business today, would they understand what makes you different — without speaking to you?"</div>
+        <div class="body-muted" style="font-size:13px;line-height:1.7;padding:10px 14px;border-left:2px solid var(--teal-border);background:rgba(29,184,204,0.03);">"Does your brand communicate the level of business you're actually running?"</div>
+      </div>
     </div>
     <div class="hero-scroll">Scroll to explore</div>
   </div>
 
   <div class="stats-bar">
     <div class="stats-inner">
-      <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Design Disciplines</div></div>
+      <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Communication Gaps We Close</div></div>
       <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Service Tiers</div></div>
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Brand-Focused</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Strategy-First</div></div>
       <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Ambition</div></div>
     </div>
   </div>
 
   <div class="services-preview">
-    <div class="sec-label">What We Do</div>
+    <div class="sec-label">What We Solve</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:32px;">Every business has a gap between what it has built and what it communicates. We help close it.</div>
     <div class="svc-preview-grid">
       <div class="card-dark card svc-p-card" onclick="showPage('services')">
         <span class="svc-icon">✦</span>
-        <div class="svc-name">Branding</div>
-        <div class="body-muted">Logo design, full brand identity systems, style guides, and brand strategy.</div>
+        <div class="svc-name">Identity Gap</div>
+        <div class="body-muted">Your business has grown, but its visual identity hasn't kept up. We rebuild the brand system to match where you actually are.</div>
       </div>
       <div class="card-dark card svc-p-card" onclick="showPage('services')">
         <span class="svc-icon">◈</span>
-        <div class="svc-name">Print & Digital</div>
-        <div class="body-muted">Business cards, flyers, brochures, social media kits, and website graphics.</div>
+        <div class="svc-name">Clarity Gap</div>
+        <div class="body-muted">Your business has real value, but your communication makes it difficult for people to understand that value quickly.</div>
       </div>
       <div class="card-dark card svc-p-card" onclick="showPage('services')">
         <span class="svc-icon">⬡</span>
-        <div class="svc-name">Illustration</div>
-        <div class="body-muted">Custom 2D illustrations, brand characters, and packaging design.</div>
+        <div class="svc-name">Consistency Gap</div>
+        <div class="body-muted">Your brand shows up across multiple platforms, but the experience feels fragmented. We build systems that hold together.</div>
       </div>
       <div class="card-dark card svc-p-card" onclick="showPage('services')">
         <span class="svc-icon">◎</span>
-        <div class="svc-name">Consultancy</div>
-        <div class="body-muted">Brand audits, design direction, creative consulting, and visual strategy.</div>
+        <div class="svc-name">Repositioning Gap</div>
+        <div class="body-muted">The business is moving into a new stage, market, or audience — but the brand hasn't moved with it.</div>
       </div>
-      <div class="card-dark card svc-p-card" onclick="showPage('services')">
-        <span class="svc-icon">⟡</span>
-        <div class="svc-name">Campaigns</div>
-        <div class="body-muted">Social media campaigns, launch assets, event branding, and ad creatives.</div>
-      </div>
-      <div class="card-dark card svc-p-card" onclick="showPage('services')">
-        <span class="svc-icon">⊙</span>
-        <div class="svc-name">Web Design & Development</div>
-        <div class="body-muted">Custom websites and interactive web experiences, from design to full development.</div>
-      </div>
-      <div class="card-dark card svc-p-card" onclick="showPage('services')">
-        <span class="svc-icon">⬭</span>
-        <div class="svc-name">Retainers</div>
-        <div class="body-muted">Monthly packages for brands that need consistent, ongoing creative support.</div>
-      </div>
+    </div>
+    <div style="margin-top:32px;text-align:center;">
+      <button class="btn-outline" onclick="showPage('services')">See All Services</button>
     </div>
   </div>
 
   <div class="mission-strip">
     <div class="mission-inner">
-      <div class="sec-label">Our Mission</div>
-      <div class="mission-quote">"To partner with the bold and the visionary — and build brands that <em>command attention, build trust, and stand the test of time.</em>"</div>
+      <div class="sec-label">Our Approach</div>
+      <div class="mission-quote">"We don't start with what design you need. We start with what's happening in your business — <em>then we close the gap.</em>"</div>
       <div class="divider"></div>
-      <div class="body-muted" style="max-width:560px;">We don't just design. We architect identities that carry the full weight of your vision — from the first impression to the lasting legacy.</div>
+      <div class="body-muted" style="max-width:560px;">Design is the intervention, not the problem. Once we understand where the gap is, we build the brand system, message, or campaign that closes it.</div>
     </div>
   </div>
 
@@ -907,19 +916,19 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
      <div class="work-card" onclick="window.location.href='bincom-bank-case-study.html'">
   <div class="portfolio-thumbnail bincom-thumb"></div>
   <div class="work-overlay"></div>
-  <div class="work-title">BINCOM BANK</div><div class="work-type">Visual Identity & Brand Design</div>
+  <div class="work-title">BINCOM BANK</div><div class="work-type">Closing the Authority Gap</div>
 </div>
       
       <div class="work-card" onclick="window.location.href='novo-amor-case-study.html'">
         <div class="portfolio-thumbnail novo-thumb"></div>
         <div class="work-overlay"></div>
-        <div class="work-title">NOVO AMOR</div><div class="work-type">Poster Design — View Case Study</div>
+        <div class="work-title">NOVO AMOR</div><div class="work-type">Translating Sound to Sight</div>
       </div>
       <div class="work-card" onclick="window.location.href='raebel-mini-skirt-case-study.html'">
         <div class="portfolio-thumbnail raebel-thumb"></div>
         <div class="work-overlay"></div>
         <div class="work-title">RAEBEL: MINI SKIRT</div>
-        <div class="work-type">Afro Dancehall Campaign Strategy</div>
+        <div class="work-type">Turning a Song Into a Movement</div>
       </div></div>
     <div style="margin-top:32px;text-align:center;">
       <button class="btn-outline" onclick="showPage('work')">View All Work</button>
@@ -931,21 +940,21 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     <div class="sec-label">Partner Success</div>
     
     <div class="card-dark card" style="margin-bottom: 20px; border-radius: 12px;">
-      <p class="body-text" style="font-family: 'Space Mono', monospace; font-size: 14px;">"Our design strategy secured our team a 1st place victory in a highly competitive presentation. JADA GREAT doesn't just create assets; they create winning entries."</p>
+      <p class="body-text" style="font-family: 'Space Mono', monospace; font-size: 14px;">"Our design strategy secured our team a 1st place victory in a highly competitive presentation. JADA GREAT doesn't just create assets; they understand what the work needs to achieve."</p>
       <div style="margin-top: 15px; color: var(--teal); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">— SHALOM</div>
     </div>
 
     <div class="card-dark card" style="border-radius: 12px;">
-      <p class="body-text" style="font-family: 'Space Mono', monospace; font-size: 14px;">"The logo design was not just visually stunning—it gave us the professional identity we needed to command respect in our market."</p>
+      <p class="body-text" style="font-family: 'Space Mono', monospace; font-size: 14px;">"The logo design was not just visually stunning — it closed the gap between how we looked and how we actually operated. It gave us the professional identity we needed to command respect."</p>
       <div style="margin-top: 15px; color: var(--teal); font-weight: 700; font-family: 'Orbitron', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">— NCHEDO</div>
     </div>
   </div>
   
   <div class="cta-strip" style="background:var(--charcoal);border-top:1px solid var(--teal-border);">
     <div style="max-width:1100px;margin:0 auto;padding:80px 56px;text-align:center;">
-      <div class="headline headline-lg" style="margin-bottom:16px;">Ready to Build Something <span>Great?</span></div>
-      <div class="body-muted" style="margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;">Let's create something your audience won't forget. Start with a brief — we'll take it from there.</div>
-      <button class="btn" onclick="showPage('contact')">Start a Project</button>
+      <div class="headline headline-lg" style="margin-bottom:16px;">Is Your Brand Communicating <span>Your Actual Value?</span></div>
+      <div class="body-muted" style="margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;">Most businesses have a gap between what they've built and what they communicate. Let's find yours — and close it.</div>
+      <button class="btn" onclick="showPage('contact')">Start a Conversation</button>
     </div>
   </div>
 
@@ -958,59 +967,99 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 <div class="container">
 
   <div class="teal-box" style="margin-bottom:64px;">
-    <div class="body-text">JADA GREAT operates at the <em>premium end</em> of the international creative market. Our pricing reflects the quality, strategy, and craft behind every deliverable. We don't compete on price — we compete on results. <strong style="color:var(--off-white);">Minimum project: $100.</strong></div>
+    <div class="body-text">JADA GREAT works at the <em>premium end</em> of the creative market. We don't begin with deliverables. We begin with diagnosis — understanding where your business is, where it's trying to go, and where the communication gap exists. <strong style="color:var(--off-white);">Minimum engagement: $100.</strong></div>
   </div>
 
   <div class="section">
-    <div class="sec-label">01 — Design Services</div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">01 · Logo Design</div></div>
-    <div class="svc-row"><div class="svc-name">Custom Logo Design (1 concept, 2 revisions)</div><div class="svc-price">$100–$150</div></div>
-    <div class="svc-row"><div class="svc-name">Custom Logo Design (3 concepts, unlimited revisions)</div><div class="svc-price">$300–$550</div></div>
-    <div class="svc-row"><div class="svc-name">Logo Revision / Refinement</div><div class="svc-price">$30–$75</div></div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">02 · Brand Identity</div></div>
-    <div class="svc-row"><div class="svc-name">Full Brand Identity (Logo, Palette, Typography, Guidelines)</div><div class="svc-price">$425–$850</div></div>
-    <div class="svc-row"><div class="svc-name">Brand Style Guide / Standards Document</div><div class="svc-price">$150–$300</div></div>
-    <div class="svc-row"><div class="svc-name">Brand Audit & Strategy Session</div><div class="svc-price">$100–$150</div></div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">03 · Print & Stationery</div></div>
-    <div class="svc-row"><div class="svc-name">Business Card Design</div><div class="svc-price">$30–$75</div></div>
-    <div class="svc-row"><div class="svc-name">Letterhead & Envelope Design</div><div class="svc-price">$35–$85</div></div>
-    <div class="svc-row"><div class="svc-name">Flyer Design (per page)</div><div class="svc-price">$25–$65</div></div>
-    <div class="svc-row"><div class="svc-name">Brochure Design (up to 8 pages)</div><div class="svc-price">$125–$250</div></div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">04 · Web Design & Development</div></div>
-    <div class="svc-row"><div class="svc-name">Website Design (5–10 pages, responsive, branded)</div><div class="svc-price">$750–$1,500</div></div>
-    <div class="svc-row"><div class="svc-name">Web Development (custom functionality, integration, advanced interactions)</div><div class="svc-price">$1,500–$3,500</div></div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">05 · Digital & Social</div></div>
-    <div class="svc-row"><div class="svc-name">Social Media Graphic (per post)</div><div class="svc-price">$20–$50</div></div>
-    <div class="svc-row"><div class="svc-name">Social Media Kit (Profile, Cover, 5 Templates)</div><div class="svc-price">$100 – $225</div></div>
-    <div class="svc-row"><div class="svc-name">Website Graphics / UI Assets</div><div class="svc-price">$75–$250</div></div>
-    <div class="svc-row"><div class="svc-name">Email Newsletter Template</div><div class="svc-price">$50–$125</div></div>
-    <div class="svc-row svc-cat"><div class="svc-cat-name">06 · Illustration</div></div>
-    <div class="svc-row"><div class="svc-name">Custom 2D Illustration (per piece)</div><div class="svc-price">$60–$200</div></div>
-    <div class="svc-row"><div class="svc-name">Packaging Design (label/box, 1 concept)</div><div class="svc-price">$150–$375</div></div>
-  </div>
-
-  <div class="section">
-    <div class="sec-label">03 — Hourly Rates</div>
-    <div class="two-col">
-      <div class="card-dark card h-card"><div class="h-role">Junior / Mid Designer</div><div class="h-rate">$10 <span>– $20</span></div><div class="h-per">per hour · contract basis</div></div>
-      <div class="card-dark card h-card"><div class="h-role">Senior / Lead Designer</div><div class="h-rate">$25 <span>– $50</span></div><div class="h-per">per hour · contract basis</div></div>
+    <div class="sec-label">01 — What's Your Gap?</div>
+    <div class="body-text" style="margin-bottom:32px;">Before we prescribe a solution, we diagnose the problem. Which of these describes your situation?</div>
+    <div class="two-col" style="gap:3px;">
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Identity Gap</div>
+        <div class="body-muted" style="margin-bottom:12px;">Your business has grown, but its visual identity hasn't kept up. You look smaller or less sophisticated than you actually are.</div>
+        <div style="font-size:11px;color:var(--teal);">→ Brand Identity, Visual System, Logo Redesign</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Clarity Gap</div>
+        <div class="body-muted" style="margin-bottom:12px;">You have real value, but people don't understand it quickly. Your message gets lost before it lands.</div>
+        <div style="font-size:11px;color:var(--teal);">→ Brand Messaging, Visual Communication, Content Strategy</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Consistency Gap</div>
+        <div class="body-muted" style="margin-bottom:12px;">Your brand shows up everywhere, but it feels like different brands. No system holds it together.</div>
+        <div style="font-size:11px;color:var(--teal);">→ Brand Systems, Style Guides, Creative Direction</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Repositioning Gap</div>
+        <div class="body-muted" style="margin-bottom:12px;">You're entering a new market, audience, or stage — but your brand is still speaking to who you used to be.</div>
+        <div style="font-size:11px;color:var(--teal);">→ Repositioning, Identity Evolution, Market Entry Strategy</div>
+      </div>
+    </div>
+    <div class="notice" style="margin-top:24px;">
+      <strong>Not sure which gap you have?</strong> That's exactly why we start with a conversation. Most businesses have more than one. We'll help you identify the right starting point.
     </div>
   </div>
 
   <div class="section">
-    <div class="sec-label">04 — Project Packages</div>
+    <div class="sec-label">02 — The Interventions</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:32px;">Once the gap is clear, we choose the right intervention. These are the four ways we typically close it — the strategic categories come first; what's delivered depends on the diagnosis.</div>
+    <div class="four-col">
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">01</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Brand Systems</div>
+        <div class="body-muted">For businesses whose identity no longer reflects the level they've reached. Logo, visual identity, style guides.</div>
+        <div style="font-size:11px;color:var(--teal-dim);margin-top:12px;">Starting from $150</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">02</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Creative Direction</div>
+        <div class="body-muted">For businesses that need stronger visual thinking, consistency, and ongoing creative leadership. Consultancy, retainers.</div>
+        <div style="font-size:11px;color:var(--teal-dim);margin-top:12px;">Retainer partnership, from $225/mo</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">03</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Communication Systems</div>
+        <div class="body-muted">For businesses that need to communicate their value more clearly and consistently. Websites, digital assets, social systems.</div>
+        <div style="font-size:11px;color:var(--teal-dim);margin-top:12px;">Starting from $750</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">04</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Campaigns & Creative</div>
+        <div class="body-muted">For launches, campaigns, and specific communication challenges. Illustration, packaging, campaign creative.</div>
+        <div style="font-size:11px;color:var(--teal-dim);margin-top:12px;">Starting from $150</div>
+      </div>
+    </div>
+    <div class="body-muted" style="margin-top:24px;">These are indicative starting points, not fixed prices. Most engagements are scoped individually once we understand where the gap is — the reference pricing below covers common anchor points within each category.</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">03 — Reference Pricing</div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">Brand Systems</div></div>
+    <div class="svc-row"><div class="svc-name">Full Brand Identity (Logo, Palette, Typography, Guidelines)</div><div class="svc-price">$425–$850</div></div>
+    <div class="svc-row"><div class="svc-name">Brand Audit & Strategy Session</div><div class="svc-price">$100–$150</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">Communication Systems</div></div>
+    <div class="svc-row"><div class="svc-name">Website Design (5–10 pages, responsive, branded)</div><div class="svc-price">$750–$1,500</div></div>
+    <div class="svc-row"><div class="svc-name">Web Development (custom functionality, integration)</div><div class="svc-price">$1,500–$3,500</div></div>
+    <div class="svc-row svc-cat"><div class="svc-cat-name">Campaigns & Creative</div></div>
+    <div class="svc-row"><div class="svc-name">Illustration & Packaging (scoped per project)</div><div class="svc-price">From $150</div></div>
+    <div class="body-muted" style="margin-top:20px;">Smaller individual assets — social graphics, print collateral, revisions — are scoped as part of a package or retainer rather than sold as one-off tasks.</div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">04 — Engagement Levels</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:24px;">Some engagements are focused. Most aren't. These are reference starting points — the right level of engagement is defined after we understand where the gap is.</div>
     <div class="three-col">
       <div class="card-dark card pkg bronze">
         <div class="pkg-tier">The Foundation</div>
-        <div class="pkg-price">$200<sub> flat</sub></div>
+        <div class="pkg-price">From $200</div>
         <div class="pkg-turnaround">⟶ 5–7 business days</div>
         <ul class="pkg-items"><li class="list-item">Logo Design (1 concept, 2 revisions)</li><li class="list-item">Social Media Kit (Profile, Cover, 2 templates)</li><li class="list-item">2-Page Flyer Design</li><li class="list-item">All source files included</li></ul>
-        <div class="pkg-tag">Ideal for startups &amp; small businesses</div>
+        <div class="pkg-tag">Entry point for early-stage brands</div>
       </div>
       <div class="card-dark card pkg silver featured">
-        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-badge">Most Common</div>
         <div class="pkg-tier">The Growth</div>
-        <div class="pkg-price">$550<sub> flat</sub></div>
+        <div class="pkg-price">From $550</div>
         <div class="pkg-turnaround">⟶ 10–14 business days</div>
         <ul class="pkg-items"><li class="list-item">Full Visual Identity System</li><li class="list-item">Logo (2 concepts, 3 revisions)</li><li class="list-item">2D Illustrations (3 custom)</li><li class="list-item">Packaging Design (1 concept)</li><li class="list-item">Design Consultancy (1-hr)</li><li class="list-item">Brand Style Guide</li></ul>
         <div class="pkg-tag">Comprehensive brand development</div>
@@ -1020,14 +1069,14 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
         <div class="pkg-price">Custom Quote<sub> — from $1,200</sub></div>
         <div class="pkg-turnaround">⟶ Timeline defined post-discovery</div>
         <ul class="pkg-items"><li class="list-item">Full Visual Identity System</li><li class="list-item">3 Logo Concepts, unlimited revisions</li><li class="list-item">Social Media Kit (10 templates)</li><li class="list-item">2D Illustrations (5 custom)</li><li class="list-item">Packaging Design (2 concepts)</li><li class="list-item">Design Consultancy (3-hr)</li><li class="list-item">Full Brand Standards Document</li><li class="list-item">Priority support throughout</li></ul>
-        <div class="pkg-tag"><em>*Enterprise projects are scoped after discovery.</em></div>
+        <div class="pkg-tag"><em>Most strategic engagements land here — scoped after discovery.</em></div>
       </div>
     </div>
   </div>
   
   <div class="section">
-    <div class="sec-label">05 — Monthly Retainers</div>
-    <div class="notice retainers-notice" style="margin-bottom:24px;"><strong>Retainers</strong> give you a dedicated designer on call every month at a predictable cost. Minimum commitment: 3 months.</div>
+    <div class="sec-label">05 — Creative Direction (Retainers)</div>
+    <div class="notice retainers-notice" style="margin-bottom:24px;"><strong>Retainers</strong> give you a dedicated creative partner every month at a predictable cost. Minimum commitment: 3 months.</div>
     <div class="three-col">
       <div class="card-dark card retainer ret-card">
         <div class="ret-tier">Starter</div>
@@ -1055,7 +1104,7 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
   </div>
 
   <div class="section">
-    <div class="sec-label">05 — Retainer Add-ons</div>
+    <div class="sec-label">06 — Retainer Add-ons</div>
     <div class="notice" style="margin-bottom:24px;"><strong>Add-ons</strong> can be appended to any retainer tier for additional capacity and specialized services.</div>
     <div class="svc-row svc-cat"><div class="svc-cat-name">Web Design & Development</div></div>
     <div class="svc-row"><div class="svc-name">Website Design included (responsive, branded)</div><div class="svc-price">+$500/month</div></div>
@@ -1071,7 +1120,7 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
       <div class="card-dark card term-card"><div class="term-label">Retainer Billing</div><div class="term-val">100% Monthly</div><div class="term-note">Full monthly fee due on the 1st of each month.</div></div>
       <div class="card-dark card term-card"><div class="term-label">Rush Fee</div><div class="term-val">+25% – +75%</div><div class="term-note">Applied for requests requiring delivery under 48 hours.</div></div>
       <div class="card-dark card term-card"><div class="term-label">Extra Revisions</div><div class="term-val">$20–$40</div><div class="term-note">Per round, beyond the agreed revision count.</div></div>
-      <div class="card-dark card term-card"><div class="term-label">Minimum Project Fee</div><div class="term-val">$100</div><div class="term-note">JADA GREAT does not accept projects below this threshold.</div></div>
+      <div class="card-dark card term-card"><div class="term-label">Minimum Engagement</div><div class="term-val">$100</div><div class="term-note">JADA GREAT does not accept projects below this threshold.</div></div>
     </div>
   </div>
 
@@ -1088,7 +1137,7 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
   </div>
 
   <div style="text-align:center;padding-top:16px;">
-    <button class="btn" onclick="showPage('contact')">Start a Project</button>
+    <button class="btn" onclick="showPage('contact')">Start a Conversation</button>
   </div>
 
 </div>
@@ -1101,46 +1150,73 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 <div class="container">
 
   <div class="section">
-    <div class="headline headline-lg" style="margin-bottom:32px;">The Creative Force<br>Behind <span>Iconic Brands.</span></div>
+    <div class="headline headline-lg" style="margin-bottom:32px;">Design Is The<br>Intervention. <span>Not The Problem.</span></div>
     <div class="two-col" style="gap:40px;align-items:start;">
-      <div class="body-text" style="line-height:2;">JADA GREAT is a creative agency built for brands that refuse to be ordinary. We work with startups, luxury labels, culture leaders, and enterprises — bringing together <em>strategy, design, and storytelling</em> to create work that lasts.<br><br>Every brief is treated as an opportunity to build something that will outlast the moment it was made in.</div>
+      <div class="body-text" style="line-height:2;">Businesses grow, evolve, enter new markets, and become more sophisticated — while their brand and communication often stay stuck at an earlier stage. That gap is what JADA GREAT exists to close.<br><br>So we don't start conversations by asking what design you need. We start by asking what's happening in the business, and what isn't being communicated effectively yet.</div>
       <div class="teal-box"><div class="body-text" style="font-size:16px;line-height:1.8;">Great isn't the goal.<br><em>It's the standard.</em></div></div>
     </div>
   </div>
 
   <div class="section">
-    <div class="sec-label">01 — Who We Serve</div>
-    <div class="body-text" style="max-width:680px;margin-bottom:24px;">We partner with ambitious brands — founders, creators, and enterprises that think globally and refuse compromise. Brands with conviction. Brands with vision. Brands that know their work matters.</div>
-    <div class="four-col">
-      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Founders</div><div class="body-muted">Building movements, not just products.</div></div>
-      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Creators</div><div class="body-muted">Artists and culture leaders scaling their impact.</div></div>
-      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Enterprises</div><div class="body-muted">Brands ready to lead, not follow.</div></div>
-      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Visionaries</div><div class="body-muted">Those who see what's next — and build it.</div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="sec-label">02 — What We Believe</div>
-    <div class="four-col">
-      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">01</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Bold</div><div class="body-muted">Confident moves, no hedging. Every decision is intentional.</div></div>
-      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">02</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Precise</div><div class="body-muted">Obsessive craft. The details are where greatness lives.</div></div>
-      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">03</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Visionary</div><div class="body-muted">We see what's next before it arrives — and build for it.</div></div>
-      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">04</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Timeless</div><div class="body-muted">Trends fade. We build brands that outlast the moment.</div></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="sec-label">03 — How We Communicate</div>
+    <div class="sec-label">01 — How We Think</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:32px;">We don't begin with design. We begin with understanding. These are the principles that guide how we work with every client.</div>
     <div class="two-col">
-      <div class="card-dark card v-card do"><div class="v-label">We Sound Like</div><div class="v-item"><b>Direct and confident.</b> Say it clearly. Own it.</div><div class="v-item"><b>Inspiring, not preachy.</b> We motivate, not lecture.</div><div class="v-item"><b>Premium but warm.</b> Elevated, never cold.</div><div class="v-item"><b>Culture-forward.</b> We always understand the room.</div><div class="v-item"><b>Concise.</b> Every word earns its place.</div></div>
-      <div class="card-dark card v-card no"><div class="v-label">We Never Sound Like</div><div class="v-item">Vague or buzzword-heavy</div><div class="v-item">Desperate or overly salesy</div><div class="v-item">Cold, stiff, or overly corporate</div><div class="v-item">Trend-chasing or inconsistent</div><div class="v-item">Generic — we never blend in</div></div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">01</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">The Gap Principle</div>
+        <div class="body-muted">There is often a gap between what a business has built, what its brand communicates, and where the business wants to go. Our job is to find that gap — and close it.</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">02</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">The Movement Principle</div>
+        <div class="body-muted">A brand is not a static object. Businesses grow, evolve, reposition, and enter new markets. Their communication must move with them — or it becomes a liability.</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">03</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Diagnosis Before Persuasion</div>
+        <div class="body-muted">We understand the situation before prescribing the solution. The right intervention only exists after the right diagnosis. We ask before we assume.</div>
+      </div>
+      <div class="card-dark card" style="padding:28px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">04</div>
+        <div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Evidence Before Exaggeration</div>
+        <div class="body-muted">We communicate results honestly. We do not manufacture evidence to make our work look more impressive. Strategic clarity is better than fabricated claims.</div>
+      </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="sec-label">Ready to Build Something Great?</div>
-    <div class="body-text" style="max-width:680px;margin-bottom:32px;">If your brand has conviction. If you think globally. If you refuse ordinary — let's talk.</div>
-    <a onclick="showPage('contact')" class="btn">Start a Project</a>
+    <div class="sec-label">02 — Who We Serve</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:24px;">We partner with ambitious brands — founders, creators, and enterprises that think globally and refuse compromise. Brands with conviction. Brands with vision. Brands that know their work matters — and know that how they communicate it matters just as much.</div>
+    <div class="four-col">
+      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Founders</div><div class="body-muted">Building movements, not just products. Often outgrowing their first visual identity faster than they expected.</div></div>
+      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Creators</div><div class="body-muted">Artists and culture leaders scaling their impact — needing communication that matches their creative ambition.</div></div>
+      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Enterprises</div><div class="body-muted">Brands ready to lead, not follow. Often navigating repositioning, new markets, or evolved audiences.</div></div>
+      <div class="card"><div style="font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px;"><span>→</span> Visionaries</div><div class="body-muted">Those who see what's next — and build it. They need brands that communicate the future they're creating.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">03 — What We Believe</div>
+    <div class="four-col">
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">01</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Bold</div><div class="body-muted">Confident moves, no hedging. We don't shrink from the real problem — we name it, and we solve it.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">02</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Precise</div><div class="body-muted">Obsessive craft. The details are where credibility lives. Precision is how trust is earned.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">03</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Visionary</div><div class="body-muted">We see what's next before it arrives — and we make sure your brand communicates it when it gets there.</div></div>
+      <div class="card"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--teal-dim);margin-bottom:14px;">04</div><div style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Timeless</div><div class="body-muted">Trends fade. We build communication systems that outlast the moment — because your business will too.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">04 — How We Communicate</div>
+    <div class="two-col">
+      <div class="card-dark card v-card do"><div class="v-label">We Sound Like</div><div class="v-item"><b>Direct and confident.</b> We say what we mean. We don't hide behind jargon.</div><div class="v-item"><b>Strategic, not decorative.</b> We talk about problems and outcomes, not just aesthetics.</div><div class="v-item"><b>Premium but warm.</b> Elevated, never cold. Human, never robotic.</div><div class="v-item"><b>Culture-forward.</b> We understand the room — and the market.</div><div class="v-item"><b>Concise.</b> Every word earns its place. Every sentence moves the thinking forward.</div></div>
+      <div class="card-dark card v-card no"><div class="v-label">We Never Sound Like</div><div class="v-item">Vague or buzzword-heavy — "synergy," "disruption," "innovation" without substance</div><div class="v-item">Desperate or overly salesy — we don't chase. The right clients recognise the gap themselves.</div><div class="v-item">Cold, stiff, or overly corporate — we are human beings talking to human beings</div><div class="v-item">Trend-chasing or inconsistent — we don't pivot our voice to match what's popular</div><div class="v-item">Generic — "We bring your vision to life" says nothing. We say something.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-label">Ready to Close the Gap?</div>
+    <div class="body-text" style="max-width:680px;margin-bottom:32px;">If your brand has conviction. If you think globally. If you refuse ordinary — let's start with a conversation about where your business is, and where it needs to go.</div>
+    <a onclick="showPage('contact')" class="btn">Start a Conversation</a>
   </div>
 
 </div>
@@ -1154,21 +1230,21 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 
   <div class="section">
     <div class="headline headline-lg" style="margin-bottom:16px;">Selected <span>Work</span></div>
-    <div class="body-text" style="margin-bottom:48px;max-width:560px;">A growing portfolio of brand identities, visual systems, and creative work built for bold clients. </div>
+    <div class="body-text" style="margin-bottom:48px;max-width:560px;">A growing portfolio of brand systems, visual identities, and strategic creative work — each built to close a specific communication gap.</div>
 
     <div class="portfolio-grid">
            <div class="portfolio-card" onclick="window.location.href='bincom-bank-case-study.html'">
         <div class="p-thumb" style="background-image: url('bincom-bank-thumb.jpg'); background-size: cover; background-position: center;">
   <div class="p-overlay"><div class="p-overlay-text">View Case Study →</div></div>
 </div>
-        <div class="p-info"><div class="p-title">BINCOM BANK</div><div class="p-type">Visual Identity & Brand Design</div><div class="p-desc">Full visual identity system for a financial institution — building authority and trust through strategic design.</div></div>
+        <div class="p-info"><div class="p-title">BINCOM BANK</div><div class="p-type">Closing the Authority Gap</div><div class="p-desc">A financial institution whose visual presence didn't match its operational maturity. We built a full identity system that communicates authority, trust, and modernity — closing the gap between internal capability and external perception.</div></div>
       </div>
       
       <div class="portfolio-card" onclick="window.location.href='novo-amor-case-study.html'">
        <div class="p-thumb" style="background-image: url('novo-amor-thumb.jpg'); background-size: cover; background-position: center;">
   <div class="p-overlay"><div class="p-overlay-text">View Case Study →</div></div>
 </div>
-        <div class="p-info"><div class="p-title">NOVO AMOR</div><div class="p-type">Poster Design — Case Study</div><div class="p-desc">North America Tour poster design — cinematic, bold, and crafted to capture the mood of the music. Full case study available.</div></div>
+        <div class="p-info"><div class="p-title">NOVO AMOR</div><div class="p-type">Translating Sound to Sight</div><div class="p-desc">A North America tour needed visual communication that matched the emotional depth of the music. We designed a poster system that translated sonic atmosphere into visual language — making the intangible feel immediate.</div></div>
       </div>
       <div class="portfolio-card" onclick="window.location.href='raebel-mini-skirt-case-study.html'">
         <div class="p-thumb" style="background-image: url('raebel-thumb.jpg'); background-size: cover; background-position: center;">
@@ -1176,12 +1252,12 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 </div>
         <div class="p-info">
           <div class="p-title">RAEBEL: MINI SKIRT</div>
-          <div class="p-type">Afro Dancehall Campaign Strategy</div>
-          <div class="p-desc">A 360-degree campaign architecture for Raebel's debut single — feminist anthem, cultural moment, and strategic movement.</div>
+          <div class="p-type">Turning a Song Into a Movement</div>
+          <div class="p-desc">A debut single with cultural weight needed a campaign that matched its ambition. We built a 360-degree communication architecture — later presented at Lagos Business School, where it won first place.</div>
         </div>
       </div>
         <div style="text-align:center;margin-top:8px;">
-          <button class="btn" onclick="showPage('contact')">Start a Project</button>
+          <button class="btn" onclick="showPage('contact')">Start a Conversation</button>
         </div>
       </div></div>
 
@@ -1197,19 +1273,18 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
 <div id="page-contact" class="page-view">
 <div class="container">
 
-  <div class="headline headline-lg" style="margin-bottom:16px;">Start a <span>Project</span></div>
-  <div class="body-text" style="margin-bottom:48px;max-width:560px;">Fill out the brief below — the more detail you share, the better we can build something that truly represents you. We'll review and send a proposal within <em>48 hours.</em></div>
+  <div class="headline headline-lg" style="margin-bottom:16px;">Start a <span>Strategic Conversation</span></div>
+  <div class="body-text" style="margin-bottom:48px;max-width:560px;">Help us understand where your business is, where you're trying to go, and where the gap currently exists. The more detail you share, the better we can diagnose the right intervention. We'll be in touch within <em>48 hours.</em></div>
 
   <div id="brief-intro" class="teal-box" style="margin-bottom:48px;">
-    <p class="body-muted"><strong style="color:var(--off-white);">All information is kept strictly confidential.</strong> A 50% deposit is required to begin work. By submitting, you agree to our standard project terms.</p>
+    <p class="body-muted"><strong style="color:var(--off-white);">All information is kept strictly confidential.</strong> We begin every engagement with diagnosis, not deliverables. Once we understand your situation, we'll scope the right intervention and discuss terms.</p>
   </div>
 
   <form id="brief-form" name="client-brief" action="https://formspree.io/f/xgoqprrl" method="POST">
     <input type="hidden" name="_subject" value="New Client Brief — JADA GREAT">
-    <input type="hidden" name="_subject" value="New Client Brief — JADA GREAT">
 
     <div class="section">
-      <div class="sec-label">01 — About You</div>
+      <div class="sec-label">01 — Where Are You Now?</div>
       <div class="two-col">
         <div class="field"><label>Full Name *</label><input type="text" name="full_name" placeholder="Your full name" required></div>
         <div class="field"><label>Brand / Business Name *</label><input type="text" name="brand_name" placeholder="Your brand name" required></div>
@@ -1222,42 +1297,47 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     </div>
 
     <div class="section">
-      <div class="sec-label">02 — Project Details</div>
+      <div class="sec-label">02 — What's Changed?</div>
+      <div class="field"><label>What has changed in your business recently? *</label><textarea name="what_changed" rows="3" placeholder="Have you grown, entered a new market, launched a new product, or shifted your audience? What triggered this moment?" required></textarea></div>
+      <div class="field"><label>What isn't working about how you currently present or communicate? *</label><textarea name="whats_not_working" rows="3" placeholder="Be honest. What feels off, outdated, unclear, or inconsistent?" required></textarea></div>
+      <div class="field"><label>How is this affecting your business? *</label><textarea name="consequence" rows="3" placeholder="What opportunities, trust, or positioning might you be losing because of this gap?" required></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">03 — Where Are You Going?</div>
+      <div class="field"><label>What are you trying to achieve? *</label><textarea name="goal" rows="3" placeholder="What should change after we work together? Be specific about the outcome you want." required></textarea></div>
+      <div class="field"><label>Who are you trying to reach? *</label><textarea name="audience" rows="2" placeholder="Age, gender, location, income level, lifestyle, mindset..." required></textarea></div>
+      <div class="two-col">
+        <div class="field"><label>Industry / Niche *</label><input type="text" name="industry" placeholder="e.g. Fashion, Fintech, Food & Beverage" required></div>
+        <div class="field"><label>Key Competitors <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="competitors" placeholder="Brand A, Brand B, Brand C"></div>
+      </div>
+      <div class="field"><label>What would you like to be different? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="desired_improvement" rows="2" placeholder="Describe the ideal outcome — how should people feel, think, or act differently after encountering your brand?"></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">04 — What Kind of Help Do You Think You Need?</div>
       <div class="field">
-        <label>Services Requested *</label>
+        <label>Possible Services <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Select any that feel relevant — we'll refine this together)</span></label>
         <div class="check-group">
-          <div class="check-item"><input type="checkbox" id="s1" name="services" value="Logo Design"><label for="s1">Logo Design</label></div>
-          <div class="check-item"><input type="checkbox" id="s2" name="services" value="Brand Identity"><label for="s2">Brand Identity</label></div>
-          <div class="check-item"><input type="checkbox" id="s3" name="services" value="Social Media Kit"><label for="s3">Social Media Kit</label></div>
-          <div class="check-item"><input type="checkbox" id="s4" name="services" value="Flyer / Print"><label for="s4">Flyer / Print</label></div>
-          <div class="check-item"><input type="checkbox" id="s5" name="services" value="Illustration"><label for="s5">Illustration</label></div>
-          <div class="check-item"><input type="checkbox" id="s6" name="services" value="Packaging"><label for="s6">Packaging</label></div>
-          <div class="check-item"><input type="checkbox" id="s7" name="services" value="Brand Consultancy"><label for="s7">Consultancy</label></div>
-          <div class="check-item"><input type="checkbox" id="s8" name="services" value="Full Rebrand"><label for="s8">Full Rebrand</label></div>
-          <div class="check-item"><input type="checkbox" id="s9" name="services" value="Website Design"><label for="s9">Website Design</label></div>
-          <div class="check-item"><input type="checkbox" id="s10" name="services" value="Web Development"><label for="s10">Web Development</label></div>
+          <div class="check-item"><input type="checkbox" id="s1" name="services" value="Brand Identity / Visual System"><label for="s1">Brand Identity / Visual System</label></div>
+          <div class="check-item"><input type="checkbox" id="s2" name="services" value="Brand Messaging / Communication"><label for="s2">Brand Messaging / Communication</label></div>
+          <div class="check-item"><input type="checkbox" id="s3" name="services" value="Creative Direction"><label for="s3">Creative Direction</label></div>
+          <div class="check-item"><input type="checkbox" id="s4" name="services" value="Website / Digital Experience"><label for="s4">Website / Digital Experience</label></div>
+          <div class="check-item"><input type="checkbox" id="s5" name="services" value="Repositioning / Evolution"><label for="s5">Repositioning / Evolution</label></div>
+          <div class="check-item"><input type="checkbox" id="s6" name="services" value="Brand Audit / Strategy"><label for="s6">Brand Audit / Strategy</label></div>
+          <div class="check-item"><input type="checkbox" id="s7" name="services" value="Monthly Retainer"><label for="s7">Monthly Retainer</label></div>
+          <div class="check-item"><input type="checkbox" id="s8" name="services" value="Not sure — need guidance"><label for="s8">Not sure — need guidance</label></div>
         </div>
       </div>
       <div class="two-col">
         <div class="field"><label>Preferred Start Date</label><input type="date" name="start_date"></div>
         <div class="field"><label>Desired Deadline</label><input type="date" name="deadline"></div>
       </div>
-      <div class="field"><label>Project Goal *</label><textarea name="goal" rows="3" placeholder="What should this project achieve?" required></textarea></div>
       <div class="field"><label>Existing Brand? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="existing" rows="2" placeholder="What do you want to keep, change, or improve?"></textarea></div>
     </div>
 
     <div class="section">
-      <div class="sec-label">03 — Audience & Market</div>
-      <div class="field"><label>Target Audience *</label><textarea name="audience" rows="2" placeholder="Age, gender, location, income level, lifestyle..." required></textarea></div>
-      <div class="two-col">
-        <div class="field"><label>Industry / Niche *</label><input type="text" name="industry" placeholder="e.g. Fashion, Fintech, Food & Beverage" required></div>
-        <div class="field"><label>Key Competitors <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><input type="text" name="competitors" placeholder="Brand A, Brand B, Brand C"></div>
-      </div>
-      <div class="field"><label>What makes you different? <span style="color:var(--muted);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.05em;text-transform:none;">(Optional)</span></label><textarea name="differentiator" rows="2" placeholder="Your unique advantage..."></textarea></div>
-    </div>
-
-    <div class="section">
-      <div class="sec-label">03 — Brand Personality</div>
+      <div class="sec-label">05 — Brand Personality & References</div>
       <div class="field">
         <label>How should your brand feel?</label>
         <div class="check-group">
@@ -1277,7 +1357,7 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     </div>
 
     <div class="section">
-      <div class="sec-label">05 — Budget & Expectations</div>
+      <div class="sec-label">06 — Budget & Expectations</div>
       <div class="field">
         <label>Estimated Budget *</label>
         <div class="check-group">
@@ -1312,14 +1392,14 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
     </div>
 
     <div style="text-align:center;padding:16px 0 48px;">
-      <button type="submit" class="btn" id="submit-btn">Submit Brief</button>
+      <button type="submit" class="btn" id="submit-btn">Start the Conversation</button>
     </div>
   </form>
 
   <div id="success-msg">
     <div class="s-icon">✦</div>
     <div class="s-title">Brief Received!</div>
-    <div class="s-sub">Thank you — we've received your brief and will be in touch within 48 hours.<br><br>Get ready to build something great.</div>
+    <div class="s-sub">Thank you — we've received your brief and will be in touch within 48 hours.<br><br>We're looking forward to understanding your business and identifying the right path forward.</div>
   </div>
 
 </div>
@@ -1330,7 +1410,8 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
   <div class="footer-inner">
     <div>
       <img src="data:image/png;base64,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" alt="JADA GREAT" style="height:60px;width:auto;margin-bottom:16px;display:block;">
-      <div class="footer-tagline">Great isn't the goal.<br>It's the standard.</div>
+      <div class="footer-tagline">Helping businesses communicate<br>their actual value.</div>
+      <div class="footer-tagline" style="margin-top:10px;font-style:normal;">Great isn't the goal.<br>It's the standard.</div>
     </div>
     <div>
       <div class="footer-col-title">Navigate</div>
@@ -1338,7 +1419,7 @@ html.light .sw2 .sw-name,.sw2 .sw-hex,.sw2 .sw-role{color:#fff!important;}
       <span class="footer-link" onclick="showPage('services')">Services</span>
       <span class="footer-link" onclick="showPage('about')">About</span>
       <span class="footer-link" onclick="showPage('work')">Work</span>
-      <span class="footer-link" onclick="showPage('contact')">Start a Project</span>
+      <span class="footer-link" onclick="showPage('contact')">Start a Conversation</span>
     </div>
     <div>
       <div class="footer-col-title">Contact</div>
@@ -1470,51 +1551,30 @@ if (form) {
     }
   });
 }
-</script>
-</body>
-</html>
-<style>
-/* Smooth Scroll Animations */
-.auto-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.auto-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
 
-<script>
+// ── ACCESSIBILITY & SCROLL REVEAL ──
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. ADD SEO & ACCESSIBILITY 
-  const meta = document.createElement('meta');
-  meta.name = "description";
-  meta.content = "JADA GREAT is a premium creative agency offering custom brand identity, graphic design, and monthly retainer packages.";
-  document.head.appendChild(meta);
-
   const logo = document.querySelector('.nav-logo img');
-  if(logo) logo.setAttribute('alt', 'JADA GREAT Agency Logo');
+  if (logo) logo.setAttribute('alt', 'JADA GREAT logo');
 
   const themeBtn = document.getElementById('theme-toggle');
-  if(themeBtn) themeBtn.setAttribute('aria-label', 'Toggle light and dark theme');
+  if (themeBtn) themeBtn.setAttribute('aria-label', 'Toggle light and dark theme');
 
-  // 2. ADD SMOOTH SCROLL ANIMATIONS 
-  // This automatically finds your specific design cards and animates them
+  // Restrained scroll-reveal for cards
   const cardsToAnimate = document.querySelectorAll('.card, .pkg, .retainer, .portfolio-card, .svc-p-card');
-  
   cardsToAnimate.forEach(card => card.classList.add('auto-animate'));
 
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        obs.unobserve(entry.target); 
+        obs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
 
   cardsToAnimate.forEach(el => observer.observe(el));
 });
-                      </script>
+</script>
+</body>
+</html>
