@@ -225,44 +225,227 @@ html.light .art-slot::before{color:#0E90A0;background:rgba(255,255,255,0.7);bord
    HOME PAGE
 ══════════════════════════════════════ */
 .hero{
-  min-height:calc(100vh - var(--nav-h));
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:flex-start;
-  padding:80px 56px;max-width:1100px;margin:0 auto;
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
 }
-.hero-eyebrow{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--teal);margin-bottom:32px;display:flex;align-items:center;gap:14px;}
-.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--teal);}
-.hero-headline{margin-bottom:28px;}
-.hero-sub{max-width:560px;margin-bottom:48px;}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
-.hero-scroll{margin-top:80px;font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.25em;text-transform:uppercase;display:flex;align-items:center;gap:12px;}
-.hero-scroll::before{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--teal),transparent);}
-.hero-stack{display:flex;flex-direction:column;gap:32px;width:100%;max-width:920px;}
-.hero-stack .art-slot{width:100%;max-width:none;}
-/* Hero image with text overlaid on top, always legible regardless of theme.
-   16:9 matches the actual hero.jpg image, so the container is no longer
-   forcing a mismatched crop. It's also allowed to grow taller if the
-   headline ever needs more room than that — it never clips the text. */
-.hero-visual{position:relative;width:100%;overflow:visible;border:1px solid var(--teal-border);aspect-ratio:16/9;}
-.hero-visual-bg{position:absolute !important;inset:0;z-index:0;width:100%;height:100%;max-width:none !important;aspect-ratio:auto;border:none;}
-.hero-visual-overlay{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg, rgba(6,6,8,0.78) 0%, rgba(6,6,8,0.45) 40%, rgba(6,6,8,0.85) 100%);
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-size:cover;
+  background-position:25% 50%;
+  background-image:url('images/hero.jpg');
 }
-.hero-visual-content{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:64px 56px;
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(180deg, rgba(6,6,8,0.88) 0%, rgba(6,6,8,0.35) 40%, rgba(6,6,8,0.55) 70%, rgba(6,6,8,0.95) 100%);
 }
-.hero-visual-content .ed-mega{color:#FFFFFF !important;text-shadow:0 2px 24px rgba(0,0,0,0.5);}
-.hero-visual-content .ed-mega span{color:var(--teal) !important;}
-@media (max-width:640px){
-  .hero-visual-content{padding:36px 24px;}
+.hero-top{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:60px;
+  align-items:center;
+  padding:140px 56px 40px;
+  flex:1;
 }
-@media (max-width:900px){
-  .hero-stack{gap:24px;}
+.hero-left{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.hero-eyebrow{
+  font-family:'Orbitron',monospace;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:var(--teal);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.hero-eyebrow::after{
+  content:'';
+  width:40px;
+  height:1px;
+  background:var(--teal);
+}
+.hero-headline{
+  font-family:'Orbitron',monospace;
+  font-weight:900;
+  letter-spacing:.04em;
+  line-height:1.05;
+  color:#FFFFFF;
+  text-transform:uppercase;
+  font-size:clamp(36px,5.8vw,78px);
+  text-shadow:0 4px 30px rgba(0,0,0,0.6);
+}
+.hero-headline span{
+  color:var(--teal);
+}
+.hero-sub-left{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  max-width:340px;
+}
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:32px;
+  padding-top:24px;
+}
+.hero-right-text{
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  color:#FFFFFF;
+  text-shadow:0 2px 16px rgba(0,0,0,0.5);
+  max-width:360px;
+}
+.hero-btns{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.hero-scroll{
+  position:relative;
+  z-index:2;
+  font-family:'Space Mono',monospace;
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 56px 32px;
+}
+.hero-scroll::before{
+  content:'';
+  width:1px;
+  height:40px;
+  background:linear-gradient(to bottom,var(--teal),transparent);
+}
+.hero-bottom{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:0 56px 40px;
+}
+.hero-services{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:6px;
+  flex-wrap:wrap;
+}
+.hero-services span{
+  font-family:'Orbitron',monospace;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.hero-mega{
+  font-family:'Orbitron',monospace;
+  font-weight:900;
+  letter-spacing:-0.02em;
+  line-height:0.85;
+  color:#FFFFFF;
+  font-size:clamp(64px,14.5vw,220px);
+  text-transform:uppercase;
+  text-shadow:0 4px 40px rgba(0,0,0,0.4);
+  white-space:nowrap;
+  overflow:hidden;
 }
 
+/* Hero CTA - one purposeful glow on load, hover takes over after */
+.hero-btns .btn:first-child {
+  animation: orbGlow 1.8s ease-in-out 1;
+}
+.hero-btns .btn:first-child:hover {
+  animation: subtleGlow 0.3s ease-out forwards;
+}
+
+/* Text slides in from the left, landing in staggered stages */
+@keyframes heroSlideIn{
+  from{opacity:0;transform:translateX(-60px);}
+  to{opacity:1;transform:translateX(0);}
+}
+.hero-anim{
+  opacity:0;
+  transform:translateX(-60px);
+  animation:heroSlideIn .9s cubic-bezier(.16,.84,.44,1) forwards;
+}
+.hero-line-a{animation-delay:.1s;}
+.hero-line-b{animation-delay:.35s;}
+.hero-right .hero-anim{animation-delay:.55s;}
+@media (prefers-reduced-motion:reduce){
+  .hero-anim{animation:none;opacity:1;transform:none;}
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-top{
+    grid-template-columns:1fr;
+    gap:36px;
+    padding:120px 36px 32px;
+  }
+  .hero-right{
+    padding-top:0;
+    max-width:100%;
+  }
+  .hero-bottom{
+    padding:0 36px 32px;
+  }
+  .hero-scroll{
+    padding:0 36px 24px;
+  }
+  .hero-mega{
+    font-size:clamp(48px,13vw,140px);
+  }
+}
+@media (max-width:640px){
+  .hero-top{
+    padding:100px 20px 28px;
+  }
+  .hero-bottom{
+    padding:0 20px 24px;
+  }
+  .hero-scroll{
+    padding:0 20px 20px;
+  }
+  .hero-services span{
+    font-size:7px;
+    letter-spacing:.18em;
+  }
+  .hero-headline{
+    font-size:clamp(30px,10vw,52px);
+  }
+  .hero-mega{
+    font-size:clamp(24px,9.5vw,80px);
+    overflow:visible;
+    letter-spacing:-0.03em;
+  }
+}
 .stats-bar{background:rgba(29,184,204,0.04);border-top:1px solid var(--teal-border);border-bottom:1px solid var(--teal-border);}
 .stats-inner{max-width:1100px;margin:0 auto;padding:40px 56px;display:grid;grid-template-columns:repeat(4,1fr);}
 .stat-item{text-align:center;padding:0 20px;border-right:1px solid var(--teal-border);}
@@ -962,6 +1145,8 @@ html.light .hero .body-muted[style*="border-left:2px"]{
 }
 </style>
 <base target="_blank">
+<base target="_blank">
+<base target="_blank">
 </head>
 <body>
 <div class="orb orb-1"></div>
@@ -998,21 +1183,39 @@ html.light .hero .body-muted[style*="border-left:2px"]{
 ══════════════════════════════════════ -->
 <div id="page-home" class="page-view active">
 
-  <div class="hero" style="padding-top:64px;">
-    <div class="hero-stack">
-      <div class="hero-visual">
-        <div class="art-slot art-slot--wide filled hero-visual-bg" data-slot="Hero — 16:9 — editorial close-up of brand work in progress" style="background-image:url('images/hero.jpg');background-size:cover;background-position:25% 50%;"></div>
-        <div class="hero-visual-overlay"></div>
-        <div class="hero-visual-content">
-          <div class="ed-mega">Your business<br>has value.<br><span>Does your brand<br>show it?</span></div>
-          <div class="hero-btns">
-            <button class="btn" onclick="showPage('contact')">Start a Conversation</button>
-            <button class="btn-outline" onclick="showPage('work')">View Work</button>
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-top">
+      <div class="hero-left">
+        <div class="hero-eyebrow">STRATEGY / BRAND / CREATIVE</div>
+        <h1 class="hero-headline">
+          <span class="hero-line-a hero-anim">Your business<br>has value.</span><br>
+          <span class="hero-line-b hero-anim">Does your brand<br><span>show it?</span></span>
+        </h1>
           </div>
+      <div class="hero-right">
+        <p class="hero-right-text hero-anim">We help businesses close the gap between what they've built and what their brand communicates.</p>
+        <div class="hero-btns hero-anim">
+          <button class="btn" onclick="showPage('contact')">START A STRATEGIC CONVERSATION</button>
+          <button class="btn-outline" onclick="showPage('work')">View Work</button>
         </div>
       </div>
     </div>
-    <div class="hero-scroll">Scroll to explore ↓</div>
+
+    <div class="hero-bottom">
+      <div class="hero-services">
+        <span>BRAND CLARITY</span>
+        <span>CREATIVE DIRECTION</span>
+        <span>COMMUNICATION SYSTEMS</span>
+        <span>BRAND ACTIVATION</span>
+        <span>BRAND STRATEGY</span>
+      </div>
+      <div class="hero-mega">JADA GREAT</div>
+    </div>
+
+    <div class="hero-scroll">Scroll to explore &darr;</div>
   </div>
 
   <div class="ed-section">
